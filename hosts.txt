@@ -1,0 +1,5 @@
+127.0.0.1        localhost
+192.168.0.152    hotfix.indonesia.manliu.top
+192.168.0.152    hotfix.testindonesia.manliu.top
+192.168.0.152    auth.indonesia.manliu.top
+192.168.0.152    auth.testindonesia.manliu.top

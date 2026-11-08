@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển Server Riêng (Game Admin Panel)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; margin-bottom: 20px; }
+    .card-header { background-color: #273549; border-bottom: 1px solid #334155; font-weight: 600; color: #38bdf8; }
+    .table { color: #e2e8f0; }
+    .table-dark { background-color: #1e293b; }
+    .btn-primary { background-color: #0284c7; border: none; }
+    .btn-primary:hover { background-color: #0369a1; }
+    .badge-status { font-size: 0.85rem; padding: 6px 12px; }
+    .stat-box { padding: 18px; border-radius: 10px; background: #243044; border-left: 4px solid #38bdf8; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark px-4 py-3 border-bottom border-secondary mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-gamepad text-info me-2"></i> Private Server Manager & GM Panel</span>
+      <span class="badge bg-success badge-status"><i class="fa-solid fa-circle-check me-1"></i> Máy chủ Đang Chạy</span>
+    </div>
+  </nav>
+
+  <div class="container-fluid px-4">
+    <!-- Stats Row -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="stat-box">
+          <small class="text-secondary text-uppercase fw-bold">Tổng Máy Chủ</small>
+          <h3 id="stat-servers" class="mt-2 text-info">1</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-box" style="border-left-color: #10b981;">
+          <small class="text-secondary text-uppercase fw-bold">Tổng Người Chơi</small>
+          <h3 id="stat-users" class="mt-2 text-success">1</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-box" style="border-left-color: #f59e0b;">
+          <small class="text-secondary text-uppercase fw-bold">Cổng HTTP Gateway</small>
+          <h3 class="mt-2 text-warning">8080</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-box" style="border-left-color: #a855f7;">
+          <small class="text-secondary text-uppercase fw-bold">Cổng WebSocket RPC</small>
+          <h3 class="mt-2 text-purple" style="color: #c084fc;">9001</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row">
+      <!-- Left: Server Management -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="fa-solid fa-server me-2"></i> Danh Sách Máy Chủ (Server List)</span>
+            <button class="btn btn-sm btn-outline-info" onclick="addServer()"><i class="fa-solid fa-plus me-1"></i> Thêm Server</button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên Máy Chủ</th>
+                    <th>Địa chỉ IP</th>
+                    <th>Cổng Port</th>
+                    <th>Trạng Thái</th>
+                    <th>Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody id="server-list"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guides Card -->
+        <div class="card">
+          <div class="card-header"><i class="fa-solid fa-circle-info me-2"></i> Hướng Dẫn Kết Nối Client (APK)</div>
+          <div class="card-body">
+            <p class="text-secondary mb-2">Để game client trỏ về máy chủ cá nhân của bạn:</p>
+            <ol class="small text-secondary ps-3">
+              <li class="mb-1"><strong>Cách 1 (Sửa cấu hình APK):</strong> Đổi nội dung file <code>assets/QHinfo</code> thành địa chỉ IP máy tính chạy server (ví dụ: <code>http://192.168.1.x:8080</code>).</li>
+              <li class="mb-1"><strong>Cách 2 (Giả lập / Root):</strong> Sửa file <code>/etc/hosts</code> trong điện thoại/giả lập để trỏ domain hoặc IP <code>47.75.231.164</code> về máy tính của bạn.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: User & GM Management -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="fa-solid fa-users-gear me-2"></i> Quản Lý Tài Khoản & Lệnh GM</span>
+            <button class="btn btn-sm btn-outline-success" onclick="addUser()"><i class="fa-solid fa-user-plus me-1"></i> Tạo Tài Khoản</button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>UID</th>
+                    <th>Tài Khoản</th>
+                    <th>Vai Trò</th>
+                    <th>Vàng / K.Cương</th>
+                    <th>Cấp / VIP</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody id="user-list"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadData() {
+      const res = await fetch('/api/data');
+      const data = await res.json();
+      
+      document.getElementById('stat-servers').innerText = data.servers.length;
+      document.getElementById('stat-users').innerText = data.users.length;
+
+      // Render Servers
+      const serverTbody = document.getElementById('server-list');
+      serverTbody.innerHTML = data.servers.map(s => `
+        <tr>
+          <td><strong>#${s.serverId}</strong></td>
+          <td>${s.serverName}</td>
+          <td><code>${s.serverip}</code></td>
+          <td><code>${s.serverport}</code></td>
+          <td>${s.status === 1 ? '<span class="badge bg-success">Online</span>' : '<span class="badge bg-danger">Bảo trì</span>'}</td>
+          <td>
+            <button class="btn btn-xs btn-outline-warning btn-sm" onclick="toggleServer(${s.serverId})">
+              <i class="fa-solid fa-power-off"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Render Users
+      const userTbody = document.getElementById('user-list');
+      userTbody.innerHTML = data.users.map(u => `
+        <tr>
+          <td>${u.uid}</td>
+          <td><strong>${u.username}</strong></td>
+          <td><span class="badge ${u.role === 'admin' ? 'bg-danger' : 'bg-secondary'}">${u.role}</span></td>
+          <td><span class="text-warning">${(u.gold||0).toLocaleString()} 🪙</span><br><span class="text-info">${(u.diamond||0).toLocaleString()} 💎</span></td>
+          <td>Lv.${u.level || 1} / VIP ${u.vip || 0}</td>
+          <td>
+            <button class="btn btn-xs btn-outline-info btn-sm" onclick="editUser('${u.uid}')"><i class="fa-solid fa-pen"></i></button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function toggleServer(id) {
+      await fetch('/api/server/toggle?id=' + id, { method: 'POST' });
+      loadData();
+    }
+
+    async function addServer() {
+      const name = prompt('Nhập tên server mới:', 'S2 - Làng Lá Private');
+      if (!name) return;
+      const ip = prompt('Nhập IP server:', '127.0.0.1');
+      const port = parseInt(prompt('Nhập cổng WebSocket:', '9001') || '9001');
+      await fetch('/api/server/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ serverName: name, serverip: ip, serverport: port })
+      });
+      loadData();
+    }
+
+    async function addUser() {
+      const username = prompt('Nhập tên đăng nhập mới:');
+      if (!username) return;
+      const password = prompt('Nhập mật khẩu:', '123456');
+      await fetch('/api/user/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, role: 'user' })
+      });
+      loadData();
+    }
+
+    async function editUser(uid) {
+      const gold = parseInt(prompt('Nhập số vàng (Gold):', '99999999') || '0');
+      const diamond = parseInt(prompt('Nhập kim cương (Diamond):', '99999999') || '0');
+      const level = parseInt(prompt('Nhập cấp độ (Level):', '100') || '1');
+      const vip = parseInt(prompt('Nhập cấp VIP:', '15') || '0');
+      await fetch('/api/user/edit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, gold, diamond, level, vip })
+      });
+      loadData();
+    }
+
+    loadData();
+    setInterval(loadData, 5000);
+  </script>
+</body>
+</html>

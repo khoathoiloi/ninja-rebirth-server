@@ -1,0 +1,12 @@
+{
+  "name": "private-game-server",
+  "version": "1.0.0",
+  "description": "Private Emulator Server for Huoying Cocos2d-JS Client",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
