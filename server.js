@@ -357,22 +357,12 @@ console.log(`[Admin Panel] Quản trị GM: http://localhost:8080/admin`);
 // ==========================================
 const wss = new WebSocketServer({ port: WS_PORT });
 
-// Helper: Send WebSocket packet with 4-byte length prefix as a TEXT frame (required by Cocos Netty client)
+// Helper: Send WebSocket packet as raw JSON string (TEXT frame)
 function sendWsPacket(ws, obj) {
   try {
     const jsonStr = typeof obj === 'string' ? obj : JSON.stringify(obj);
-    const jsonLen = Buffer.byteLength(jsonStr, 'utf8');
-    // Quan trọng: Client Cocos Netty tính alllen = 4 byte header + độ dài chuỗi json,
-    // sau đó gọi buff.substring(4, alllen). Do đó alllen bắt buộc phải là jsonLen + 4!
-    const alllen = jsonLen + 4;
-    const p1 = (alllen >> 24) & 0xFF;
-    const p2 = (alllen >> 16) & 0xFF;
-    const p3 = (alllen >> 8) & 0xFF;
-    const p4 = alllen & 0xFF;
-    const header = String.fromCharCode(p1, p2, p3, p4);
-    // Crucial: Must be sent as a TEXT frame (String), NOT a Buffer!
-    if (ws.readyState === ws.OPEN) {
-      ws.send(header + jsonStr);
+    if (ws && ws.readyState === ws.OPEN) {
+      ws.send(jsonStr);
     }
   } catch (e) {
     console.error('[WebSocket] Lỗi gửi gói tin:', e.message);
