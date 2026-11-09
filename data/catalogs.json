@@ -343,6 +343,12 @@
       "defaultStar": 3
     },
     {
+      "id": 10580,
+      "name": "Kitsuchi",
+      "title": "Hoàng Thổ - Nham Thiết Bích Làng Đá",
+      "defaultStar": 3
+    },
+    {
       "id": 10590,
       "name": "Darui",
       "title": "Hắc Lôi Bão Tố",
@@ -485,6 +491,402 @@
       "name": "Hagoromo Otsutsuki",
       "title": "Lục Đạo Tiên Nhân",
       "defaultStar": 5
+    },
+    {
+      "id": 10830,
+      "name": "Hamura Otsutsuki",
+      "title": "Lục Đạo Huynh Đệ - Tenseigan Thần Thánh",
+      "defaultStar": 5
+    },
+    {
+      "id": 10840,
+      "name": "Ashura Otsutsuki",
+      "title": "Chân Thần Mộc Độn - Tiên Thể Tông Gia",
+      "defaultStar": 5
+    },
+    {
+      "id": 10850,
+      "name": "Indra Otsutsuki",
+      "title": "Susanoo Thiên Chiếu - Tiên Nhãn Tông Gia",
+      "defaultStar": 5
+    },
+    {
+      "id": 10860,
+      "name": "Toneri Otsutsuki",
+      "title": "Chakra Tenseigan Chế Độ Hoàng Kim",
+      "defaultStar": 5
+    },
+    {
+      "id": 10870,
+      "name": "Momoshiki Otsutsuki",
+      "title": "Dị Hóa Quả Thần Thụ - Vô Địch Thần Tộc",
+      "defaultStar": 5
+    },
+    {
+      "id": 10880,
+      "name": "Kinshiki Otsutsuki",
+      "title": "Bậc Thầy Khí Giới Chakra Otsutsuki",
+      "defaultStar": 4
+    },
+    {
+      "id": 10890,
+      "name": "Urashiki Otsutsuki",
+      "title": "Luân Hồi Nhãn Hồng - Đoạt Câu Chakra",
+      "defaultStar": 4
+    },
+    {
+      "id": 10900,
+      "name": "Isshiki Otsutsuki",
+      "title": "Thần Tộc Tối Cao - Daikokuten Thiếu Thất",
+      "defaultStar": 5
+    },
+    {
+      "id": 10910,
+      "name": "Naruto Uzumaki",
+      "title": "Hokage Đệ Thất - Thời Đại Mới",
+      "defaultStar": 5
+    },
+    {
+      "id": 10920,
+      "name": "Sasuke Uchiha",
+      "title": "Nhẫn Giả Hỗ Trợ - Luân Hồi Sharingan Trưởng Thành",
+      "defaultStar": 5
+    },
+    {
+      "id": 10930,
+      "name": "Sakura Haruno",
+      "title": "Bách Hào Y Nhẫn Trưởng Thành",
+      "defaultStar": 4
+    },
+    {
+      "id": 10940,
+      "name": "Hinata Hyuga",
+      "title": "Thái Tử Phi Byakugan Trưởng Thành",
+      "defaultStar": 4
+    },
+    {
+      "id": 10950,
+      "name": "Boruto Uzumaki",
+      "title": "Karma Thức Tỉnh - Tịnh Nhãn Jougan",
+      "defaultStar": 4
+    },
+    {
+      "id": 10960,
+      "name": "Sarada Uchiha",
+      "title": "Sharingan Tam Câu Ngọc Cương Quyền",
+      "defaultStar": 3
+    },
+    {
+      "id": 10970,
+      "name": "Mitsuki",
+      "title": "Tiên Nhân Hóa Long Xà Tiên Thể",
+      "defaultStar": 4
+    },
+    {
+      "id": 10980,
+      "name": "Kawaki",
+      "title": "Karma Ấn Tia Sáng Hủy Diệt",
+      "defaultStar": 4
+    },
+    {
+      "id": 10990,
+      "name": "Naruto Uzumaki",
+      "title": "Baryon Mode - Chế Độ Hạt Nhân Tối Thượng",
+      "defaultStar": 5
+    },
+    {
+      "id": 11000,
+      "name": "Might Guy",
+      "title": "Bát Môn Độn Giáp - Dạ Khải Night Guy",
+      "defaultStar": 5
+    },
+    {
+      "id": 11010,
+      "name": "Kakashi Hatake",
+      "title": "Song Sharingan Susanoo Hoàn Mỹ - DMS Kakashi",
+      "defaultStar": 5
+    },
+    {
+      "id": 11020,
+      "name": "Minato Namikaze",
+      "title": "Cửu Vĩ Kurama Chakra Mode - KCM",
+      "defaultStar": 5
+    },
+    {
+      "id": 11030,
+      "name": "Hashirama Senju",
+      "title": "Tiên Nhân Mộc Độn - Chân Tế Thiên Thủ",
+      "defaultStar": 5
+    },
+    {
+      "id": 11040,
+      "name": "Madara Uchiha",
+      "title": "Uế Thổ Luân Hồi Nhãn - Susanoo Toàn Thể",
+      "defaultStar": 5
+    },
+    {
+      "id": 11050,
+      "name": "Itachi Uchiha",
+      "title": "Uế Thổ Chuyển Sinh - Ảo Thuật Izanami",
+      "defaultStar": 5
+    },
+    {
+      "id": 11060,
+      "name": "Tobirama Senju",
+      "title": "Uế Thổ Phi Lôi Thần Đoạn Thủy Sáng Lập",
+      "defaultStar": 5
+    },
+    {
+      "id": 11070,
+      "name": "Hiruzen Sarutobi",
+      "title": "Uế Thổ Ngũ Độn Toàn Năng - Kim Cương Bổng",
+      "defaultStar": 5
+    },
+    {
+      "id": 11080,
+      "name": "Rasa",
+      "title": "Tứ Đại Phong Ảnh - Sa Kim Thiết Lũy",
+      "defaultStar": 4
+    },
+    {
+      "id": 11090,
+      "name": "A",
+      "title": "Tam Đại Lôi Ảnh - Lôi Giáp Nhất Bản Quán Thủ",
+      "defaultStar": 5
+    },
+    {
+      "id": 11100,
+      "name": "Mu",
+      "title": "Nhị Đại Thổ Ảnh - Vô Trần Độn Liệt Giới",
+      "defaultStar": 5
+    },
+    {
+      "id": 11110,
+      "name": "Gengetsu Hozuki",
+      "title": "Nhị Đại Thủy Ảnh - Đại Trát Ảo Ảnh Hải Thị",
+      "defaultStar": 5
+    },
+    {
+      "id": 11120,
+      "name": "Kinkaku",
+      "title": "Kim Giác - Vàng Chakra Cửu Vĩ Lục Đạo Khí",
+      "defaultStar": 4
+    },
+    {
+      "id": 11130,
+      "name": "Ginkaku",
+      "title": "Ngân Giác - Bạc Bảo Bối Lục Đạo Hấp Thụ",
+      "defaultStar": 4
+    },
+    {
+      "id": 11140,
+      "name": "Pakura",
+      "title": "Sa Băng - Diệt Thể Chước Độn",
+      "defaultStar": 3
+    },
+    {
+      "id": 11150,
+      "name": "Gari",
+      "title": "Bộc Độn Cương Quyền Nổ Tung",
+      "defaultStar": 3
+    },
+    {
+      "id": 11160,
+      "name": "Mangetsu Hozuki",
+      "title": "Bậc Thầy Thất Kiếm Vụ Nhẫn",
+      "defaultStar": 4
+    },
+    {
+      "id": 11170,
+      "name": "Kushimaru Kuriarare",
+      "title": "Trường Kiếm Nuibari Đoạt Mạng",
+      "defaultStar": 3
+    },
+    {
+      "id": 11180,
+      "name": "Jinpachi Munashi",
+      "title": "Bạo Kiếm Shibuki Thuật Nổ Vô Tận",
+      "defaultStar": 3
+    },
+    {
+      "id": 11190,
+      "name": "Jinin Akebino",
+      "title": "Độn Kiếm Kabutowari Phá Thiết",
+      "defaultStar": 3
+    },
+    {
+      "id": 11200,
+      "name": "Ameyuri Ringo",
+      "title": "Lôi Kiếm Kiba Thiên Lôi Song Đao",
+      "defaultStar": 3
+    },
+    {
+      "id": 11210,
+      "name": "Zetsu",
+      "title": "Bạch Tuyệt & Hắc Tuyệt Bí Ẩn",
+      "defaultStar": 3
+    },
+    {
+      "id": 11220,
+      "name": "Shin Uchiha",
+      "title": "Tàn Dư Thí Nghiệm Sharingan Toàn Thân",
+      "defaultStar": 4
+    },
+    {
+      "id": 11230,
+      "name": "Jirobo",
+      "title": "Âm Quy Tứ Nhân - Thổ Lăng Lao",
+      "defaultStar": 2
+    },
+    {
+      "id": 11240,
+      "name": "Kidomaru",
+      "title": "Âm Quy Tứ Nhân - Quỷ Cung Bát Nhẫn",
+      "defaultStar": 2
+    },
+    {
+      "id": 11250,
+      "name": "Tayuya",
+      "title": "Âm Quy Tứ Nhân - Ma Tiêu Quỷ Hồn Khúc",
+      "defaultStar": 2
+    },
+    {
+      "id": 11260,
+      "name": "Sakon & Ukon",
+      "title": "Âm Quy Tứ Nhân - Song Sinh Ký Sinh Thể",
+      "defaultStar": 2
+    },
+    {
+      "id": 11270,
+      "name": "Shizune",
+      "title": "Trợ Lý Hokage - Độc Vụ Y Nhẫn",
+      "defaultStar": 2
+    },
+    {
+      "id": 11280,
+      "name": "Anko Mitarashi",
+      "title": "Tiềm Ảnh Xà Thủ Thượng Nhẫn",
+      "defaultStar": 3
+    },
+    {
+      "id": 11290,
+      "name": "Rin Nohara",
+      "title": "Tam Vĩ Nhân Khí - Y Nhẫn Konoha",
+      "defaultStar": 3
+    },
+    {
+      "id": 11300,
+      "name": "Yahiko",
+      "title": "Thủ Lĩnh Akatsuki Ban Đầu",
+      "defaultStar": 3
+    },
+    {
+      "id": 11310,
+      "name": "Menma Uzumaki",
+      "title": "Hắc Cửu Vĩ - Thế Giới Ảo Road to Ninja",
+      "defaultStar": 5
+    },
+    {
+      "id": 11320,
+      "name": "Mecha-Naruto",
+      "title": "Robot Cửu Vĩ Vũ Khí Khoa Học",
+      "defaultStar": 4
+    },
+    {
+      "id": 11330,
+      "name": "Himawari Uzumaki",
+      "title": "Bạch Nhãn Thần Đồng Konoha",
+      "defaultStar": 3
+    },
+    {
+      "id": 11340,
+      "name": "Shinki",
+      "title": "Sa Thiết Từ Độn Thế Hệ Mới",
+      "defaultStar": 3
+    },
+    {
+      "id": 11350,
+      "name": "Torune Aburame",
+      "title": "Hắc Trùng Bí Thuật Gốc Rễ",
+      "defaultStar": 3
+    },
+    {
+      "id": 11360,
+      "name": "Fu Yamanaka",
+      "title": "Tâm Chuyển Tâm Bí Thuật Gốc Rễ",
+      "defaultStar": 3
+    },
+    {
+      "id": 11370,
+      "name": "Omoi",
+      "title": "Lôi Kiếm Thuấn Bộ Làng Mây",
+      "defaultStar": 2
+    },
+    {
+      "id": 11380,
+      "name": "Karui",
+      "title": "Hắc Lôi Kiếm Pháp Làng Mây",
+      "defaultStar": 2
+    },
+    {
+      "id": 11390,
+      "name": "Samui",
+      "title": "Trưởng Đội Trinh Sát Làng Mây",
+      "defaultStar": 2
+    },
+    {
+      "id": 11400,
+      "name": "Hanabi Hyuga",
+      "title": "Thiên Nữ Bạch Nhãn Konoha",
+      "defaultStar": 3
+    },
+    {
+      "id": 11410,
+      "name": "Konohamaru Sarutobi",
+      "title": "Thượng Nhẫn Trưởng Thành - Đại Ngọc Rasengan",
+      "defaultStar": 3
+    },
+    {
+      "id": 11420,
+      "name": "Mirai Sarutobi",
+      "title": "Huyễn Thuật Phong Độn Hậu Duệ Asuma",
+      "defaultStar": 2
+    },
+    {
+      "id": 11430,
+      "name": "Chojuro",
+      "title": "Thủy Ảnh Đệ Lục Trưởng Thành",
+      "defaultStar": 4
+    },
+    {
+      "id": 11440,
+      "name": "Kurotsuchi",
+      "title": "Thổ Ảnh Đệ Tứ Trưởng Thành",
+      "defaultStar": 4
+    },
+    {
+      "id": 11450,
+      "name": "Darui",
+      "title": "Lôi Ảnh Đệ Ngũ Trưởng Thành",
+      "defaultStar": 4
+    },
+    {
+      "id": 11460,
+      "name": "Gaara",
+      "title": "Phong Ảnh Đệ Ngũ - Đại Mạc Trưởng Thành",
+      "defaultStar": 4
+    },
+    {
+      "id": 11470,
+      "name": "Kankuro",
+      "title": "Khôi Lỗi Sư Đại Sư Trưởng Thành",
+      "defaultStar": 3
+    },
+    {
+      "id": 11480,
+      "name": "Temari",
+      "title": "Phong Ba Đại Sư Tộc Nara Trưởng Thành",
+      "defaultStar": 3
     }
   ],
   "items": [
@@ -578,7 +980,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10010,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Naruto Uzumaki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Naruto Uzumaki"
     },
     {
       "id": 10020,
@@ -586,7 +988,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10020,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Naruto Uzumaki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Naruto Uzumaki"
     },
     {
       "id": 10030,
@@ -594,7 +996,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10030,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sakura Haruno"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sakura Haruno"
     },
     {
       "id": 10040,
@@ -602,7 +1004,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10040,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kakashi Hatake"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kakashi Hatake"
     },
     {
       "id": 10050,
@@ -610,7 +1012,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10050,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Gaara"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Gaara"
     },
     {
       "id": 10060,
@@ -618,7 +1020,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10060,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Rock Lee"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Rock Lee"
     },
     {
       "id": 10070,
@@ -626,7 +1028,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10070,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sasuke Uchiha"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sasuke Uchiha"
     },
     {
       "id": 10080,
@@ -634,7 +1036,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10080,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Neji Hyuga"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Neji Hyuga"
     },
     {
       "id": 10090,
@@ -642,7 +1044,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10090,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Shikamaru Nara"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Shikamaru Nara"
     },
     {
       "id": 10100,
@@ -650,7 +1052,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10100,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Hinata Hyuga"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hinata Hyuga"
     },
     {
       "id": 10110,
@@ -658,7 +1060,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10110,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kiba Inuzuka"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kiba Inuzuka"
     },
     {
       "id": 10120,
@@ -666,7 +1068,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10120,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Shino Aburame"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Shino Aburame"
     },
     {
       "id": 10130,
@@ -674,7 +1076,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10130,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Tenten"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Tenten"
     },
     {
       "id": 10140,
@@ -682,7 +1084,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10140,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Choji Akimichi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Choji Akimichi"
     },
     {
       "id": 10150,
@@ -690,7 +1092,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10150,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Ino Yamanaka"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Ino Yamanaka"
     },
     {
       "id": 10160,
@@ -698,7 +1100,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10160,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kankuro"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kankuro"
     },
     {
       "id": 10170,
@@ -706,7 +1108,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10170,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Temari"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Temari"
     },
     {
       "id": 10180,
@@ -714,7 +1116,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10180,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sai"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sai"
     },
     {
       "id": 10190,
@@ -722,7 +1124,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10190,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Yamato"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Yamato"
     },
     {
       "id": 10200,
@@ -730,7 +1132,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10200,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Asuma Sarutobi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Asuma Sarutobi"
     },
     {
       "id": 10210,
@@ -738,7 +1140,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10210,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kurenai Yuhi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kurenai Yuhi"
     },
     {
       "id": 10220,
@@ -746,7 +1148,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10220,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Might Guy"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Might Guy"
     },
     {
       "id": 10230,
@@ -754,7 +1156,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10230,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Jiraiya"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Jiraiya"
     },
     {
       "id": 10240,
@@ -762,7 +1164,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10240,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Tsunade"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Tsunade"
     },
     {
       "id": 10250,
@@ -770,7 +1172,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10250,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sakura Haruno"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sakura Haruno"
     },
     {
       "id": 10260,
@@ -778,7 +1180,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10260,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Orochimaru"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Orochimaru"
     },
     {
       "id": 10270,
@@ -786,7 +1188,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10270,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Minato Namikaze"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Minato Namikaze"
     },
     {
       "id": 10280,
@@ -794,7 +1196,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10280,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kushina Uzumaki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kushina Uzumaki"
     },
     {
       "id": 10290,
@@ -802,7 +1204,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10290,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Hashirama Senju"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hashirama Senju"
     },
     {
       "id": 10300,
@@ -810,7 +1212,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10300,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Tobirama Senju"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Tobirama Senju"
     },
     {
       "id": 10310,
@@ -818,7 +1220,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10310,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Hiruzen Sarutobi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hiruzen Sarutobi"
     },
     {
       "id": 10320,
@@ -826,7 +1228,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10320,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Itachi Uchiha"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Itachi Uchiha"
     },
     {
       "id": 10330,
@@ -834,7 +1236,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10330,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kisame Hoshigaki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kisame Hoshigaki"
     },
     {
       "id": 10340,
@@ -842,7 +1244,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10340,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Deidara"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Deidara"
     },
     {
       "id": 10350,
@@ -850,7 +1252,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10350,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sasori"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sasori"
     },
     {
       "id": 10360,
@@ -858,7 +1260,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10360,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Hidan"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hidan"
     },
     {
       "id": 10370,
@@ -866,7 +1268,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10370,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kakuzu"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kakuzu"
     },
     {
       "id": 10380,
@@ -874,7 +1276,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10380,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Konan"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Konan"
     },
     {
       "id": 10390,
@@ -882,7 +1284,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10390,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Pain Lục Đạo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Pain Lục Đạo"
     },
     {
       "id": 10400,
@@ -890,7 +1292,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10400,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Nagato Uzumaki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Nagato Uzumaki"
     },
     {
       "id": 10410,
@@ -898,7 +1300,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10410,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Tobi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Tobi"
     },
     {
       "id": 10420,
@@ -906,7 +1308,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10420,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Madara Uchiha"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Madara Uchiha"
     },
     {
       "id": 10430,
@@ -914,7 +1316,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10430,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Obito Uchiha"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Obito Uchiha"
     },
     {
       "id": 10440,
@@ -922,7 +1324,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10440,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Killer Bee"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Killer Bee"
     },
     {
       "id": 10450,
@@ -930,7 +1332,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10450,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Raikage Đệ Tứ"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Raikage Đệ Tứ"
     },
     {
       "id": 10460,
@@ -938,7 +1340,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10460,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Mei Terumi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mei Terumi"
     },
     {
       "id": 10470,
@@ -946,7 +1348,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10470,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Onoki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Onoki"
     },
     {
       "id": 10480,
@@ -954,7 +1356,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10480,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Danzo Shimura"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Danzo Shimura"
     },
     {
       "id": 10490,
@@ -962,7 +1364,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10490,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kabuto Yakushi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kabuto Yakushi"
     },
     {
       "id": 10500,
@@ -970,7 +1372,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10500,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Karin Uzumaki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Karin Uzumaki"
     },
     {
       "id": 10510,
@@ -978,7 +1380,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10510,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Suigetsu Hozuki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Suigetsu Hozuki"
     },
     {
       "id": 10520,
@@ -986,7 +1388,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10520,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Jugo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Jugo"
     },
     {
       "id": 10530,
@@ -994,7 +1396,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10530,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kimimaro"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kimimaro"
     },
     {
       "id": 10540,
@@ -1002,7 +1404,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10540,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Zabuza Momochi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Zabuza Momochi"
     },
     {
       "id": 10550,
@@ -1010,7 +1412,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10550,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Haku"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Haku"
     },
     {
       "id": 10560,
@@ -1018,7 +1420,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10560,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Bà Chiyo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Bà Chiyo"
     },
     {
       "id": 10570,
@@ -1026,7 +1428,15 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10570,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Mifune"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mifune"
+    },
+    {
+      "id": 10580,
+      "name": "Mảnh Kitsuchi (Hoàng Thổ - Nham Thiết Bích Làng Đá)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10580,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kitsuchi"
     },
     {
       "id": 10590,
@@ -1034,7 +1444,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10590,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Darui"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Darui"
     },
     {
       "id": 10600,
@@ -1042,7 +1452,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10600,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Cee"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Cee"
     },
     {
       "id": 10610,
@@ -1050,7 +1460,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10610,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kurotsuchi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kurotsuchi"
     },
     {
       "id": 10620,
@@ -1058,7 +1468,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10620,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Akatsuchi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Akatsuchi"
     },
     {
       "id": 10630,
@@ -1066,7 +1476,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10630,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Chojuro"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Chojuro"
     },
     {
       "id": 10640,
@@ -1074,7 +1484,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10640,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Ao"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Ao"
     },
     {
       "id": 10650,
@@ -1082,7 +1492,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10650,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Shisui Uchiha"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Shisui Uchiha"
     },
     {
       "id": 10660,
@@ -1090,7 +1500,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10660,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Izuna Uchiha"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Izuna Uchiha"
     },
     {
       "id": 10670,
@@ -1098,7 +1508,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10670,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Konohamaru"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Konohamaru"
     },
     {
       "id": 10680,
@@ -1106,7 +1516,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10680,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Hanzo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hanzo"
     },
     {
       "id": 10690,
@@ -1114,7 +1524,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10690,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Yugito Nii"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Yugito Nii"
     },
     {
       "id": 10700,
@@ -1122,7 +1532,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10700,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Yagura Karatachi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Yagura Karatachi"
     },
     {
       "id": 10710,
@@ -1130,7 +1540,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10710,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Roshi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Roshi"
     },
     {
       "id": 10720,
@@ -1138,7 +1548,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10720,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Han"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Han"
     },
     {
       "id": 10730,
@@ -1146,7 +1556,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10730,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Utakata"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Utakata"
     },
     {
       "id": 10740,
@@ -1154,7 +1564,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10740,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Fu"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Fu"
     },
     {
       "id": 10750,
@@ -1162,7 +1572,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10750,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Naruto Tiên Nhân"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Naruto Tiên Nhân"
     },
     {
       "id": 10760,
@@ -1170,7 +1580,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10760,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sasuke Mangekyo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sasuke Mangekyo"
     },
     {
       "id": 10770,
@@ -1178,7 +1588,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10770,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Madara Lục Đạo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Madara Lục Đạo"
     },
     {
       "id": 10780,
@@ -1186,7 +1596,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10780,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Obito Lục Đạo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Obito Lục Đạo"
     },
     {
       "id": 10790,
@@ -1194,7 +1604,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10790,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Naruto Lục Đạo"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Naruto Lục Đạo"
     },
     {
       "id": 10800,
@@ -1202,7 +1612,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10800,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Sasuke Luân Hồi"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sasuke Luân Hồi"
     },
     {
       "id": 10810,
@@ -1210,7 +1620,7 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10810,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Kaguya Otsutsuki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kaguya Otsutsuki"
     },
     {
       "id": 10820,
@@ -1218,7 +1628,535 @@
       "category": "Mảnh tướng",
       "icon": "user-ninja",
       "hero_id": 10820,
-      "desc": "Thu thập đủ mảnh để chiêu mộ Hagoromo Otsutsuki"
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hagoromo Otsutsuki"
+    },
+    {
+      "id": 10830,
+      "name": "Mảnh Hamura Otsutsuki (Lục Đạo Huynh Đệ - Tenseigan Thần Thánh)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10830,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hamura Otsutsuki"
+    },
+    {
+      "id": 10840,
+      "name": "Mảnh Ashura Otsutsuki (Chân Thần Mộc Độn - Tiên Thể Tông Gia)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10840,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Ashura Otsutsuki"
+    },
+    {
+      "id": 10850,
+      "name": "Mảnh Indra Otsutsuki (Susanoo Thiên Chiếu - Tiên Nhãn Tông Gia)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10850,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Indra Otsutsuki"
+    },
+    {
+      "id": 10860,
+      "name": "Mảnh Toneri Otsutsuki (Chakra Tenseigan Chế Độ Hoàng Kim)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10860,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Toneri Otsutsuki"
+    },
+    {
+      "id": 10870,
+      "name": "Mảnh Momoshiki Otsutsuki (Dị Hóa Quả Thần Thụ - Vô Địch Thần Tộc)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10870,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Momoshiki Otsutsuki"
+    },
+    {
+      "id": 10880,
+      "name": "Mảnh Kinshiki Otsutsuki (Bậc Thầy Khí Giới Chakra Otsutsuki)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10880,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kinshiki Otsutsuki"
+    },
+    {
+      "id": 10890,
+      "name": "Mảnh Urashiki Otsutsuki (Luân Hồi Nhãn Hồng - Đoạt Câu Chakra)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10890,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Urashiki Otsutsuki"
+    },
+    {
+      "id": 10900,
+      "name": "Mảnh Isshiki Otsutsuki (Thần Tộc Tối Cao - Daikokuten Thiếu Thất)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10900,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Isshiki Otsutsuki"
+    },
+    {
+      "id": 10910,
+      "name": "Mảnh Naruto Uzumaki (Hokage Đệ Thất - Thời Đại Mới)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10910,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Naruto Uzumaki"
+    },
+    {
+      "id": 10920,
+      "name": "Mảnh Sasuke Uchiha (Nhẫn Giả Hỗ Trợ - Luân Hồi Sharingan Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10920,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sasuke Uchiha"
+    },
+    {
+      "id": 10930,
+      "name": "Mảnh Sakura Haruno (Bách Hào Y Nhẫn Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10930,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sakura Haruno"
+    },
+    {
+      "id": 10940,
+      "name": "Mảnh Hinata Hyuga (Thái Tử Phi Byakugan Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10940,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hinata Hyuga"
+    },
+    {
+      "id": 10950,
+      "name": "Mảnh Boruto Uzumaki (Karma Thức Tỉnh - Tịnh Nhãn Jougan)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10950,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Boruto Uzumaki"
+    },
+    {
+      "id": 10960,
+      "name": "Mảnh Sarada Uchiha (Sharingan Tam Câu Ngọc Cương Quyền)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10960,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sarada Uchiha"
+    },
+    {
+      "id": 10970,
+      "name": "Mảnh Mitsuki (Tiên Nhân Hóa Long Xà Tiên Thể)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10970,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mitsuki"
+    },
+    {
+      "id": 10980,
+      "name": "Mảnh Kawaki (Karma Ấn Tia Sáng Hủy Diệt)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10980,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kawaki"
+    },
+    {
+      "id": 10990,
+      "name": "Mảnh Naruto Uzumaki (Baryon Mode - Chế Độ Hạt Nhân Tối Thượng)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 10990,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Naruto Uzumaki"
+    },
+    {
+      "id": 11000,
+      "name": "Mảnh Might Guy (Bát Môn Độn Giáp - Dạ Khải Night Guy)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11000,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Might Guy"
+    },
+    {
+      "id": 11010,
+      "name": "Mảnh Kakashi Hatake (Song Sharingan Susanoo Hoàn Mỹ - DMS Kakashi)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11010,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kakashi Hatake"
+    },
+    {
+      "id": 11020,
+      "name": "Mảnh Minato Namikaze (Cửu Vĩ Kurama Chakra Mode - KCM)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11020,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Minato Namikaze"
+    },
+    {
+      "id": 11030,
+      "name": "Mảnh Hashirama Senju (Tiên Nhân Mộc Độn - Chân Tế Thiên Thủ)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11030,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hashirama Senju"
+    },
+    {
+      "id": 11040,
+      "name": "Mảnh Madara Uchiha (Uế Thổ Luân Hồi Nhãn - Susanoo Toàn Thể)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11040,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Madara Uchiha"
+    },
+    {
+      "id": 11050,
+      "name": "Mảnh Itachi Uchiha (Uế Thổ Chuyển Sinh - Ảo Thuật Izanami)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11050,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Itachi Uchiha"
+    },
+    {
+      "id": 11060,
+      "name": "Mảnh Tobirama Senju (Uế Thổ Phi Lôi Thần Đoạn Thủy Sáng Lập)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11060,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Tobirama Senju"
+    },
+    {
+      "id": 11070,
+      "name": "Mảnh Hiruzen Sarutobi (Uế Thổ Ngũ Độn Toàn Năng - Kim Cương Bổng)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11070,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hiruzen Sarutobi"
+    },
+    {
+      "id": 11080,
+      "name": "Mảnh Rasa (Tứ Đại Phong Ảnh - Sa Kim Thiết Lũy)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11080,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Rasa"
+    },
+    {
+      "id": 11090,
+      "name": "Mảnh A (Tam Đại Lôi Ảnh - Lôi Giáp Nhất Bản Quán Thủ)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11090,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao A"
+    },
+    {
+      "id": 11100,
+      "name": "Mảnh Mu (Nhị Đại Thổ Ảnh - Vô Trần Độn Liệt Giới)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11100,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mu"
+    },
+    {
+      "id": 11110,
+      "name": "Mảnh Gengetsu Hozuki (Nhị Đại Thủy Ảnh - Đại Trát Ảo Ảnh Hải Thị)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11110,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Gengetsu Hozuki"
+    },
+    {
+      "id": 11120,
+      "name": "Mảnh Kinkaku (Kim Giác - Vàng Chakra Cửu Vĩ Lục Đạo Khí)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11120,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kinkaku"
+    },
+    {
+      "id": 11130,
+      "name": "Mảnh Ginkaku (Ngân Giác - Bạc Bảo Bối Lục Đạo Hấp Thụ)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11130,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Ginkaku"
+    },
+    {
+      "id": 11140,
+      "name": "Mảnh Pakura (Sa Băng - Diệt Thể Chước Độn)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11140,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Pakura"
+    },
+    {
+      "id": 11150,
+      "name": "Mảnh Gari (Bộc Độn Cương Quyền Nổ Tung)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11150,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Gari"
+    },
+    {
+      "id": 11160,
+      "name": "Mảnh Mangetsu Hozuki (Bậc Thầy Thất Kiếm Vụ Nhẫn)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11160,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mangetsu Hozuki"
+    },
+    {
+      "id": 11170,
+      "name": "Mảnh Kushimaru Kuriarare (Trường Kiếm Nuibari Đoạt Mạng)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11170,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kushimaru Kuriarare"
+    },
+    {
+      "id": 11180,
+      "name": "Mảnh Jinpachi Munashi (Bạo Kiếm Shibuki Thuật Nổ Vô Tận)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11180,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Jinpachi Munashi"
+    },
+    {
+      "id": 11190,
+      "name": "Mảnh Jinin Akebino (Độn Kiếm Kabutowari Phá Thiết)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11190,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Jinin Akebino"
+    },
+    {
+      "id": 11200,
+      "name": "Mảnh Ameyuri Ringo (Lôi Kiếm Kiba Thiên Lôi Song Đao)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11200,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Ameyuri Ringo"
+    },
+    {
+      "id": 11210,
+      "name": "Mảnh Zetsu (Bạch Tuyệt & Hắc Tuyệt Bí Ẩn)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11210,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Zetsu"
+    },
+    {
+      "id": 11220,
+      "name": "Mảnh Shin Uchiha (Tàn Dư Thí Nghiệm Sharingan Toàn Thân)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11220,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Shin Uchiha"
+    },
+    {
+      "id": 11230,
+      "name": "Mảnh Jirobo (Âm Quy Tứ Nhân - Thổ Lăng Lao)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11230,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Jirobo"
+    },
+    {
+      "id": 11240,
+      "name": "Mảnh Kidomaru (Âm Quy Tứ Nhân - Quỷ Cung Bát Nhẫn)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11240,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kidomaru"
+    },
+    {
+      "id": 11250,
+      "name": "Mảnh Tayuya (Âm Quy Tứ Nhân - Ma Tiêu Quỷ Hồn Khúc)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11250,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Tayuya"
+    },
+    {
+      "id": 11260,
+      "name": "Mảnh Sakon & Ukon (Âm Quy Tứ Nhân - Song Sinh Ký Sinh Thể)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11260,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Sakon & Ukon"
+    },
+    {
+      "id": 11270,
+      "name": "Mảnh Shizune (Trợ Lý Hokage - Độc Vụ Y Nhẫn)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11270,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Shizune"
+    },
+    {
+      "id": 11280,
+      "name": "Mảnh Anko Mitarashi (Tiềm Ảnh Xà Thủ Thượng Nhẫn)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11280,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Anko Mitarashi"
+    },
+    {
+      "id": 11290,
+      "name": "Mảnh Rin Nohara (Tam Vĩ Nhân Khí - Y Nhẫn Konoha)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11290,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Rin Nohara"
+    },
+    {
+      "id": 11300,
+      "name": "Mảnh Yahiko (Thủ Lĩnh Akatsuki Ban Đầu)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11300,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Yahiko"
+    },
+    {
+      "id": 11310,
+      "name": "Mảnh Menma Uzumaki (Hắc Cửu Vĩ - Thế Giới Ảo Road to Ninja)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11310,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Menma Uzumaki"
+    },
+    {
+      "id": 11320,
+      "name": "Mảnh Mecha-Naruto (Robot Cửu Vĩ Vũ Khí Khoa Học)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11320,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mecha-Naruto"
+    },
+    {
+      "id": 11330,
+      "name": "Mảnh Himawari Uzumaki (Bạch Nhãn Thần Đồng Konoha)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11330,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Himawari Uzumaki"
+    },
+    {
+      "id": 11340,
+      "name": "Mảnh Shinki (Sa Thiết Từ Độn Thế Hệ Mới)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11340,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Shinki"
+    },
+    {
+      "id": 11350,
+      "name": "Mảnh Torune Aburame (Hắc Trùng Bí Thuật Gốc Rễ)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11350,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Torune Aburame"
+    },
+    {
+      "id": 11360,
+      "name": "Mảnh Fu Yamanaka (Tâm Chuyển Tâm Bí Thuật Gốc Rễ)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11360,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Fu Yamanaka"
+    },
+    {
+      "id": 11370,
+      "name": "Mảnh Omoi (Lôi Kiếm Thuấn Bộ Làng Mây)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11370,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Omoi"
+    },
+    {
+      "id": 11380,
+      "name": "Mảnh Karui (Hắc Lôi Kiếm Pháp Làng Mây)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11380,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Karui"
+    },
+    {
+      "id": 11390,
+      "name": "Mảnh Samui (Trưởng Đội Trinh Sát Làng Mây)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11390,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Samui"
+    },
+    {
+      "id": 11400,
+      "name": "Mảnh Hanabi Hyuga (Thiên Nữ Bạch Nhãn Konoha)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11400,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Hanabi Hyuga"
+    },
+    {
+      "id": 11410,
+      "name": "Mảnh Konohamaru Sarutobi (Thượng Nhẫn Trưởng Thành - Đại Ngọc Rasengan)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11410,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Konohamaru Sarutobi"
+    },
+    {
+      "id": 11420,
+      "name": "Mảnh Mirai Sarutobi (Huyễn Thuật Phong Độn Hậu Duệ Asuma)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11420,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Mirai Sarutobi"
+    },
+    {
+      "id": 11430,
+      "name": "Mảnh Chojuro (Thủy Ảnh Đệ Lục Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11430,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Chojuro"
+    },
+    {
+      "id": 11440,
+      "name": "Mảnh Kurotsuchi (Thổ Ảnh Đệ Tứ Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11440,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kurotsuchi"
+    },
+    {
+      "id": 11450,
+      "name": "Mảnh Darui (Lôi Ảnh Đệ Ngũ Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11450,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Darui"
+    },
+    {
+      "id": 11460,
+      "name": "Mảnh Gaara (Phong Ảnh Đệ Ngũ - Đại Mạc Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11460,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Gaara"
+    },
+    {
+      "id": 11470,
+      "name": "Mảnh Kankuro (Khôi Lỗi Sư Đại Sư Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11470,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Kankuro"
+    },
+    {
+      "id": 11480,
+      "name": "Mảnh Temari (Phong Ba Đại Sư Tộc Nara Trưởng Thành)",
+      "category": "Mảnh tướng",
+      "icon": "user-ninja",
+      "hero_id": 11480,
+      "desc": "Thu thập đủ mảnh để chiêu mộ và nâng sao Temari"
     }
   ],
   "recharge_packages": [

@@ -1,7 +1,7 @@
 @echo off
 title "Private Game Server - GM Admin Panel"
 cd /d "%~dp0"
-set "PATH=%LOCALAPPDATA%\Programs\nodejs;%PATH%"
+set "PATH=%LOCALAPPDATA%\Programs\nodejs;%LOCALAPPDATA%\Programs\Git\cmd;%PATH%"
 
 echo Dang giai phong cac cong mang (80, 8080, 9001)...
 powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 80,8080,9001 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }" >nul 2>&1

@@ -576,9 +576,12 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-gm btn-sm" onclick="submitAddHero()">Cấp Tướng Ngay</button>
+        <div class="modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-danger btn-sm" onclick="submitUnlockAllHeroes()"><i class="fa-solid fa-bolt me-1"></i> Cấp FULL Toàn Bộ Ninja</button>
+          <div>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Hủy</button>
+            <button type="button" class="btn btn-gm btn-sm" onclick="submitAddHero()">Cấp Tướng Ngay</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1000,6 +1003,26 @@
 
       bootstrap.Modal.getInstance(document.getElementById('modalAddHero')).hide();
       alert(`Đã cấp thành công Tướng Ninja [${heroId}] (${star}★, Lv.${lv})!`);
+      loadData();
+    }
+
+    async function submitUnlockAllHeroes() {
+      const uid = document.getElementById('addHeroUid').value;
+      const lv = parseInt(document.getElementById('addHeroLv').value || 100);
+      const star = parseInt(document.getElementById('addHeroStar').value || 5);
+      const totalCount = globalData.catalogs?.heroes?.length || 148;
+
+      if (!confirm(`Bạn có chắc muốn cấp FULL toàn bộ ${totalCount} Ninja (Lv.${lv}, ${star}★) cho tài khoản này?`)) return;
+
+      const res = await fetch('/api/user/hero/unlock_all', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, lv, star })
+      });
+      const data = await res.json();
+
+      bootstrap.Modal.getInstance(document.getElementById('modalAddHero')).hide();
+      alert(`Đã cấp thành công FULL ${data.count || totalCount} Ninja cho người chơi!`);
       loadData();
     }
 

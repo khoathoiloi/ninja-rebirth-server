@@ -128,15 +128,19 @@ function initPlayerData(user) {
     };
   }
 
-  // Canonical Starter Heroes: 10020 (Naruto), 10070 (Sasuke), 10250 (Sakura), 10040 (Kakashi), 10010 (Naruto Cửu Vĩ), 10050 (Gaara)
+  // Canonical Starter & Full Heroes: Cấp trọn bộ Ninja chuẩn game gốc
   if (!pd.heros || Object.keys(pd.heros).length === 0) {
     pd.heros = {};
-    const heroIds = [10020, 10070, 10250, 10040, 10010, 10050];
-    heroIds.forEach(id => {
-      pd.heros[id] = {
-        id: id,
-        hero_id: id,
-        lv: pd.level,
+    const cat = getCatalogs();
+    const heroList = (cat.heroes && cat.heroes.length > 0) ? cat.heroes : [
+      { id: 10020 }, { id: 10070 }, { id: 10250 }, { id: 10040 }, { id: 10010 }, { id: 10050 }
+    ];
+    heroList.forEach(h => {
+      const hid = String(h.id);
+      pd.heros[hid] = {
+        id: h.id,
+        hero_id: h.id,
+        lv: pd.level || 100,
         exp: 0,
         quality: 1,
         star: 5,
@@ -375,13 +379,23 @@ async function handleRequest(req, res) {
           "10250": { id: 10250, count: 80 },
           "10040": { id: 10040, count: 80 }
         },
-        heros: {
-          "10020": { id: 10020, hero_id: 10020, lv: 50, exp: 0, quality: 1, star: 3, status: 0, has_awake: 1 },
-          "10070": { id: 10070, hero_id: 10070, lv: 50, exp: 0, quality: 1, star: 3, status: 0, has_awake: 1 },
-          "10250": { id: 10250, hero_id: 10250, lv: 50, exp: 0, quality: 1, star: 3, status: 0, has_awake: 1 },
-          "10040": { id: 10040, hero_id: 10040, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 },
-          "10010": { id: 10010, hero_id: 10010, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 }
-        },
+        heros: (() => {
+          const cat = getCatalogs();
+          const obj = {};
+          (cat.heroes || []).forEach(h => {
+            obj[String(h.id)] = {
+              id: h.id,
+              hero_id: h.id,
+              lv: 100,
+              exp: 0,
+              quality: 1,
+              star: 5,
+              status: 0,
+              has_awake: 1
+            };
+          });
+          return obj;
+        })(),
         used_codes: []
       }
     };
@@ -532,6 +546,45 @@ async function handleRequest(req, res) {
     }
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: true }));
+  }
+
+  // Admin API: Unlock All Heroes for User (Max Level & Stars)
+  if (pathname === '/api/user/hero/unlock_all' && req.method === 'POST') {
+    const body = await parseBody(req);
+    const db = getDb();
+    const user = db.users.find(u => String(u.uid) === String(body.uid));
+    if (user) {
+      initPlayerData(user);
+      const pd = user.player_data;
+      pd.heros = pd.heros || {};
+      pd.items = pd.items || {};
+      const cat = getCatalogs();
+      const heroList = cat.heroes || [];
+      const lv = parseInt(body.lv || pd.level || 100);
+      const star = parseInt(body.star || 5);
+      const has_awake = 1;
+
+      heroList.forEach(h => {
+        const hid = String(h.id);
+        pd.heros[hid] = {
+          id: h.id,
+          hero_id: h.id,
+          lv: lv,
+          exp: 0,
+          quality: 1,
+          star: star,
+          status: 0,
+          has_awake: has_awake
+        };
+        pd.items[hid] = { id: h.id, count: 999 };
+      });
+
+      saveDb(db);
+      console.log(`>>> [GM Hero] Đã cấp FULL ${heroList.length} Ninja (Lv.${lv}, ${star}★) cho UID ${user.uid} (${user.username})`);
+      broadcastUserUpdate(user.uid, 'all');
+    }
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: true, count: (getCatalogs().heroes || []).length }));
   }
 
   // Admin API: Recharge Package for User (Authentic Tiers)
