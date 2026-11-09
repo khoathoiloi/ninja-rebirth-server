@@ -3,167 +3,973 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bảng Điều Khiển Server Riêng (Game Admin Panel)</title>
+  <title>Bảng Điều Khiển Quản Trị Viên (GM Admin Panel) - Ninja Rebirth</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
-    .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; margin-bottom: 20px; }
-    .card-header { background-color: #273549; border-bottom: 1px solid #334155; font-weight: 600; color: #38bdf8; }
-    .table { color: #e2e8f0; }
-    .table-dark { background-color: #1e293b; }
-    .btn-primary { background-color: #0284c7; border: none; }
-    .btn-primary:hover { background-color: #0369a1; }
-    .badge-status { font-size: 0.85rem; padding: 6px 12px; }
-    .stat-box { padding: 18px; border-radius: 10px; background: #243044; border-left: 4px solid #38bdf8; }
+    :root {
+      --bg-main: #0b0f19;
+      --bg-card: #151d30;
+      --bg-card-header: #1c2740;
+      --border-color: #243452;
+      --primary: #f97316;
+      --primary-hover: #ea580c;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
+      --accent-gold: #f59e0b;
+    }
+    body {
+      background-color: var(--bg-main);
+      color: #f1f5f9;
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+    }
+    .navbar {
+      background-color: #111827;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .nav-tabs {
+      border-bottom: 1px solid var(--border-color);
+    }
+    .nav-tabs .nav-link {
+      color: #94a3b8;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #f8fafc;
+      border-color: transparent;
+    }
+    .nav-tabs .nav-link.active {
+      color: var(--primary);
+      background: transparent;
+      border-bottom: 3px solid var(--primary);
+    }
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .card-header {
+      background-color: var(--bg-card-header);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 700;
+      color: #e2e8f0;
+      padding: 14px 20px;
+      border-radius: 14px 14px 0 0 !important;
+    }
+    .table {
+      color: #cbd5e1;
+      margin-bottom: 0;
+    }
+    .table-dark {
+      background-color: var(--bg-card);
+    }
+    .table th {
+      border-bottom: 2px solid var(--border-color);
+      color: #94a3b8;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .table td {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
+    .stat-box {
+      padding: 20px;
+      border-radius: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--primary);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .stat-box.cyan { border-left-color: var(--accent-cyan); }
+    .stat-box.green { border-left-color: var(--accent-green); }
+    .stat-box.purple { border-left-color: var(--accent-purple); }
+    .stat-box.gold { border-left-color: var(--accent-gold); }
+    .form-control, .form-select {
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      color: #fff;
+      border-radius: 8px;
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: #0b1120;
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25);
+    }
+    .modal-content {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .modal-header {
+      background-color: var(--bg-card-header);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .modal-footer {
+      border-top: 1px solid var(--border-color);
+    }
+    .btn-gm {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+    }
+    .btn-gm:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      color: #fff;
+    }
+    .badge-vip {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #fff;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .code-box {
+      font-family: monospace;
+      font-size: 1.1rem;
+      background: #090d16;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px dashed #f97316;
+      color: #fb923c;
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark px-4 py-3 border-bottom border-secondary mb-4">
+
+  <!-- Top Navigation -->
+  <nav class="navbar navbar-dark px-4 py-3 sticky-top">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-gamepad text-info me-2"></i> Private Server Manager & GM Panel</span>
-      <span class="badge bg-success badge-status"><i class="fa-solid fa-circle-check me-1"></i> Máy chủ Đang Chạy</span>
+      <div class="d-flex align-items-center">
+        <i class="fa-solid fa-gamepad fa-xl text-warning me-3"></i>
+        <div>
+          <h5 class="mb-0 fw-bold text-white">NINJA REBIRTH <span class="badge bg-warning text-dark ms-2">GM ADMIN PANEL</span></h5>
+          <small class="text-secondary">Hệ thống Quản trị Server Riêng & Điều khiển Nhẫn Giả</small>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-success py-2 px-3"><i class="fa-solid fa-circle-dot me-1"></i> Máy chủ Đang Chạy</span>
+        <a href="/register" target="_blank" class="btn btn-sm btn-outline-warning">
+          <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Mở Cổng Đăng Ký
+        </a>
+      </div>
     </div>
   </nav>
 
-  <div class="container-fluid px-4">
-    <!-- Stats Row -->
-    <div class="row mb-4">
-      <div class="col-md-3">
-        <div class="stat-box">
-          <small class="text-secondary text-uppercase fw-bold">Tổng Máy Chủ</small>
-          <h3 id="stat-servers" class="mt-2 text-info">1</h3>
+  <div class="container-fluid px-4 py-3">
+
+    <!-- Stats Bar -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="stat-box cyan">
+          <small class="text-secondary text-uppercase fw-bold"><i class="fa-solid fa-users me-1"></i> Tổng Nhẫn Giả</small>
+          <h2 id="stat-users" class="mt-2 text-info mb-0">0</h2>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="stat-box" style="border-left-color: #10b981;">
-          <small class="text-secondary text-uppercase fw-bold">Tổng Người Chơi</small>
-          <h3 id="stat-users" class="mt-2 text-success">1</h3>
+      <div class="col-6 col-lg-3">
+        <div class="stat-box green">
+          <small class="text-secondary text-uppercase fw-bold"><i class="fa-solid fa-signal me-1"></i> Đang Online (WS)</small>
+          <h2 id="stat-online" class="mt-2 text-success mb-0">0</h2>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="stat-box" style="border-left-color: #f59e0b;">
-          <small class="text-secondary text-uppercase fw-bold">Cổng HTTP Gateway</small>
-          <h3 class="mt-2 text-warning">8080</h3>
+      <div class="col-6 col-lg-3">
+        <div class="stat-box gold">
+          <small class="text-secondary text-uppercase fw-bold"><i class="fa-solid fa-gift me-1"></i> Mã Giftcode Đã Tạo</small>
+          <h2 id="stat-giftcodes" class="mt-2 text-warning mb-0">0</h2>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="stat-box" style="border-left-color: #a855f7;">
-          <small class="text-secondary text-uppercase fw-bold">Cổng WebSocket RPC</small>
-          <h3 class="mt-2 text-purple" style="color: #c084fc;">9001</h3>
+      <div class="col-6 col-lg-3">
+        <div class="stat-box purple">
+          <small class="text-secondary text-uppercase fw-bold"><i class="fa-solid fa-server me-1"></i> Cổng Gateway / RPC</small>
+          <h2 class="mt-2 mb-0" style="color: #c084fc; font-size: 1.6rem;">8080 <span class="text-secondary fs-6">/ 9001</span></h2>
         </div>
       </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="row">
-      <!-- Left: Server Management -->
-      <div class="col-lg-6">
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-users" type="button">
+          <i class="fa-solid fa-users-gear me-2"></i> Quản Lý Người Chơi & Lệnh GM
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-giftcode" type="button">
+          <i class="fa-solid fa-gift me-2"></i> Quản Lý Giftcode
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-register" type="button">
+          <i class="fa-solid fa-link me-2"></i> Cổng Đăng Ký Online
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-servers" type="button">
+          <i class="fa-solid fa-server me-2"></i> Danh Sách Máy Chủ
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Contents -->
+    <div class="tab-content" id="adminTabsContent">
+
+      <!-- ========================================== -->
+      <!-- TAB 1: QUẢN LÝ NGƯỜI CHƠI & LỆNH GM -->
+      <!-- ========================================== -->
+      <div class="tab-pane fade show active" id="tab-users" role="tabpanel">
+        <div class="card">
+          <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <span><i class="fa-solid fa-users me-2 text-warning"></i> Danh Sách Nhẫn Giả Trong Server</span>
+            <div class="d-flex gap-2">
+              <input type="text" id="searchUser" class="form-control form-control-sm" placeholder="Tìm tên hoặc UID..." oninput="renderUsers()">
+              <button class="btn btn-sm btn-outline-success" onclick="openAddUserModal()">
+                <i class="fa-solid fa-user-plus me-1"></i> Thêm Tài Khoản
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-dark table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>UID</th>
+                    <th>Tài Khoản / Ingame</th>
+                    <th>Cấp / VIP</th>
+                    <th>Tài Nguyên Ingame</th>
+                    <th>Trạng Thái</th>
+                    <th class="text-center">Thao Tác GM</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody">
+                  <tr><td colspan="6" class="text-center py-4 text-secondary">Đang tải dữ liệu...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: QUẢN LÝ GIFTCODE -->
+      <!-- ========================================== -->
+      <div class="tab-pane fade" id="tab-giftcode" role="tabpanel">
+        <div class="row">
+          <!-- Left: Create Giftcode Form -->
+          <div class="col-lg-5 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-plus me-2 text-warning"></i> Tạo Mã Giftcode Mới
+              </div>
+              <div class="card-body">
+                <form id="createCodeForm" onsubmit="handleCreateGiftcode(event)">
+                  <div class="mb-3">
+                    <label class="form-label small fw-bold text-secondary">MÃ GIFTCODE</label>
+                    <div class="input-group">
+                      <input type="text" id="gcCode" class="form-control text-uppercase" placeholder="VD: NARUTO2026, TANTHU..." required>
+                      <button type="button" class="btn btn-outline-secondary" onclick="generateRandomCode()">
+                        <i class="fa-solid fa-dice me-1"></i> Sinh Mã
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <label class="form-label small fw-bold text-secondary"><i class="fa-solid fa-coins text-warning me-1"></i> VÀNG (GOLD)</label>
+                      <input type="number" id="gcGold" class="form-control" placeholder="0" value="5000000">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small fw-bold text-secondary"><i class="fa-solid fa-gem text-info me-1"></i> KIM CƯƠNG (STONE)</label>
+                      <input type="number" id="gcStone" class="form-control" placeholder="0" value="20000">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small fw-bold text-secondary"><i class="fa-solid fa-bolt text-danger me-1"></i> THỂ LỰC (SP)</label>
+                      <input type="number" id="gcSp" class="form-control" placeholder="0" value="300">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small fw-bold text-secondary"><i class="fa-solid fa-shield text-purple me-1"></i> ĐIỂM ĐẤU TRƯỜNG</label>
+                      <input type="number" id="gcArena" class="form-control" placeholder="0" value="5000">
+                    </div>
+                  </div>
+
+                  <!-- Giftcode Items -->
+                  <div class="mb-3">
+                    <label class="form-label small fw-bold text-secondary d-flex justify-content-between align-items-center">
+                      <span><i class="fa-solid fa-box-open text-warning me-1"></i> VẬT PHẨM KÈM THEO</span>
+                      <button type="button" class="btn btn-xs btn-outline-info btn-sm" onclick="addGiftcodeItemRow()">
+                        <i class="fa-solid fa-plus me-1"></i> Thêm Vật Phẩm
+                      </button>
+                    </label>
+                    <div id="giftcodeItemsContainer" class="d-flex flex-column gap-2"></div>
+                  </div>
+
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <label class="form-label small fw-bold text-secondary">LƯỢT DÙNG TỐI ĐA</label>
+                      <input type="number" id="gcMaxUses" class="form-control" placeholder="999999" value="999999">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small fw-bold text-secondary">HẠN DÙNG (TÙY CHỌN)</label>
+                      <input type="date" id="gcExpiresAt" class="form-control">
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-gm w-100 py-2">
+                    <i class="fa-solid fa-check me-2"></i> TẠO MÃ GIFTCODE NGAY
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Giftcode List -->
+          <div class="col-lg-7">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-list me-2 text-warning"></i> Danh Sách Mã Giftcode Đã Tạo</span>
+                <span class="badge bg-secondary" id="giftcodeCountBadge">0 Mã</span>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-dark table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th>Mã Code</th>
+                        <th>Phần Thưởng</th>
+                        <th>Lượt Dùng</th>
+                        <th>Trạng Thái</th>
+                        <th class="text-end">Hành Động</th>
+                      </tr>
+                    </thead>
+                    <tbody id="giftcodeTableBody">
+                      <tr><td colspan="5" class="text-center py-4 text-secondary">Chưa có mã Giftcode nào</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: CỔNG ĐĂNG KÝ ONLINE -->
+      <!-- ========================================== -->
+      <div class="tab-pane fade" id="tab-register" role="tabpanel">
+        <div class="row">
+          <div class="col-lg-7 mx-auto">
+            <div class="card">
+              <div class="card-header">
+                <i class="fa-solid fa-share-nodes me-2 text-warning"></i> Cổng Đăng Ký Tài Khoản Cho Người Chơi Online
+              </div>
+              <div class="card-body">
+                <p class="text-secondary">
+                  Gửi liên kết này cho game thủ để họ có thể tự tạo tài khoản và nhận ngay gói quà tân thủ khởi đầu:
+                </p>
+
+                <div class="mb-4">
+                  <label class="form-label small fw-bold text-secondary">LIÊN KẾT ĐĂNG KÝ (PUBLIC REGISTER URL)</label>
+                  <div class="input-group">
+                    <input type="text" id="publicRegisterLink" class="form-control bg-dark text-warning fw-bold" readonly>
+                    <button class="btn btn-primary" onclick="copyRegisterLink()">
+                      <i class="fa-solid fa-copy me-1"></i> Sao Chép Link
+                    </button>
+                    <a id="btnOpenRegisterLink" href="/register" target="_blank" class="btn btn-outline-info">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở
+                    </a>
+                  </div>
+                </div>
+
+                <div class="p-3 rounded bg-dark border border-secondary mb-3">
+                  <h6 class="text-warning fw-bold mb-2"><i class="fa-solid fa-circle-info me-2"></i> Hướng Dẫn Cấu Hình Game Cho Người Chơi:</h6>
+                  <ol class="small text-secondary ps-3 mb-0">
+                    <li class="mb-2">Người chơi truy cập vào link trên để tạo tài khoản (Username & Password).</li>
+                    <li class="mb-2">Trong file APK game, trỏ địa chỉ <code>assets/QHinfo</code> về địa chỉ máy chủ IP của bạn: <code id="qhinfoText">http://192.168.0.152:8080</code></li>
+                    <li class="mb-0">Mở game và đăng nhập bằng tài khoản vừa đăng ký để vào chiến game ngay!</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: MÁY CHỦ -->
+      <!-- ========================================== -->
+      <div class="tab-pane fade" id="tab-servers" role="tabpanel">
         <div class="card">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <span><i class="fa-solid fa-server me-2"></i> Danh Sách Máy Chủ (Server List)</span>
-            <button class="btn btn-sm btn-outline-info" onclick="addServer()"><i class="fa-solid fa-plus me-1"></i> Thêm Server</button>
+            <span><i class="fa-solid fa-server me-2 text-warning"></i> Danh Sách Cụm Máy Chủ (Servers)</span>
+            <button class="btn btn-sm btn-outline-info" onclick="openAddServerModal()">
+              <i class="fa-solid fa-plus me-1"></i> Thêm Server Mới
+            </button>
           </div>
-          <div class="card-body">
+          <div class="card-body p-0">
             <div class="table-responsive">
-              <table class="table table-dark table-hover align-middle mb-0">
+              <table class="table table-dark table-hover align-middle">
                 <thead>
                   <tr>
                     <th>ID</th>
                     <th>Tên Máy Chủ</th>
-                    <th>Địa chỉ IP</th>
-                    <th>Cổng Port</th>
+                    <th>Địa Chỉ IP</th>
+                    <th>Cổng WebSocket</th>
                     <th>Trạng Thái</th>
-                    <th>Thao Tác</th>
+                    <th class="text-end">Thao Tác</th>
                   </tr>
                 </thead>
-                <tbody id="server-list"></tbody>
+                <tbody id="serverTableBody"></tbody>
               </table>
             </div>
-          </div>
-        </div>
-
-        <!-- Guides Card -->
-        <div class="card">
-          <div class="card-header"><i class="fa-solid fa-circle-info me-2"></i> Hướng Dẫn Kết Nối Client (APK)</div>
-          <div class="card-body">
-            <p class="text-secondary mb-2">Để game client trỏ về máy chủ cá nhân của bạn:</p>
-            <ol class="small text-secondary ps-3">
-              <li class="mb-1"><strong>Cách 1 (Sửa cấu hình APK):</strong> Đổi nội dung file <code>assets/QHinfo</code> thành địa chỉ IP máy tính chạy server (ví dụ: <code>http://192.168.1.x:8080</code>).</li>
-              <li class="mb-1"><strong>Cách 2 (Giả lập / Root):</strong> Sửa file <code>/etc/hosts</code> trong điện thoại/giả lập để trỏ domain hoặc IP <code>47.75.231.164</code> về máy tính của bạn.</li>
-            </ol>
           </div>
         </div>
       </div>
 
-      <!-- Right: User & GM Management -->
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span><i class="fa-solid fa-users-gear me-2"></i> Quản Lý Tài Khoản & Lệnh GM</span>
-            <button class="btn btn-sm btn-outline-success" onclick="addUser()"><i class="fa-solid fa-user-plus me-1"></i> Tạo Tài Khoản</button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: EDIT USER STATS -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalEditUser" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-pen-to-square text-warning me-2"></i> Chỉnh Sửa Chỉ Số & Lệnh GM</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editUid">
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-secondary">TÊN NHÂN VẬT INGAME</label>
+            <input type="text" id="editTeamName" class="form-control">
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-dark table-hover align-middle mb-0">
-                <thead>
-                  <tr>
-                    <th>UID</th>
-                    <th>Tài Khoản</th>
-                    <th>Vai Trò</th>
-                    <th>Vàng / K.Cương</th>
-                    <th>Cấp / VIP</th>
-                    <th>Hành Động</th>
-                  </tr>
-                </thead>
-                <tbody id="user-list"></tbody>
-              </table>
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">CẤP ĐỘ (LEVEL 1-100+)</label>
+              <input type="number" id="editLevel" class="form-control" min="1" max="200">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">CẤP VIP (0-15)</label>
+              <input type="number" id="editVip" class="form-control" min="0" max="15">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">VÀNG (GOLD)</label>
+              <input type="number" id="editGold" class="form-control">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">KIM CƯƠNG (DIAMOND/STONE)</label>
+              <input type="number" id="editStone" class="form-control">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">THỂ LỰC (SP)</label>
+              <input type="number" id="editSp" class="form-control">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">ĐIỂM ĐẤU TRƯỜNG</label>
+              <input type="number" id="editArena" class="form-control">
             </div>
           </div>
+          <small class="text-info"><i class="fa-solid fa-bolt me-1"></i> Thay đổi sẽ tự động đồng bộ trực tiếp vào game của người chơi!</small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-gm btn-sm" onclick="saveUserEdit()">Lưu Thay Đổi</button>
         </div>
       </div>
     </div>
   </div>
 
-  <script>
-    async function loadData() {
-      const res = await fetch('/api/data');
-      const data = await res.json();
-      
-      document.getElementById('stat-servers').innerText = data.servers.length;
-      document.getElementById('stat-users').innerText = data.users.length;
+  <!-- ========================================== -->
+  <!-- MODAL: ADD ITEM TO USER -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalAddItem" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-box-open text-warning me-2"></i> Tặng Vật Phẩm Vào Túi Đồ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="addItemUid">
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-secondary">CHỌN VẬT PHẨM TỪ DANH MỤC</label>
+            <select id="addItemSelect" class="form-select mb-2" onchange="onSelectItemCatalog(this)">
+              <option value="">-- Hoặc chọn vật phẩm hot --</option>
+            </select>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-8">
+              <label class="form-label small fw-bold text-secondary">MÃ ID VẬT PHẨM</label>
+              <input type="number" id="addItemId" class="form-control" placeholder="VD: 40010">
+            </div>
+            <div class="col-4">
+              <label class="form-label small fw-bold text-secondary">SỐ LƯỢNG</label>
+              <input type="number" id="addItemCount" class="form-control" value="100" min="1">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-gm btn-sm" onclick="submitAddItem()">Tặng Vào Túi Đồ</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      // Render Servers
-      const serverTbody = document.getElementById('server-list');
-      serverTbody.innerHTML = data.servers.map(s => `
+  <!-- ========================================== -->
+  <!-- MODAL: ADD HERO TO USER -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalAddHero" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-user-ninja text-warning me-2"></i> Cấp / Nâng Cấp Ninja</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="addHeroUid">
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-secondary">CHỌN NINJA</label>
+            <select id="addHeroSelect" class="form-select mb-2" onchange="onSelectHeroCatalog(this)">
+              <option value="">-- Chọn tướng ninja --</option>
+            </select>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">MÃ ID NINJA</label>
+              <input type="number" id="addHeroId" class="form-control" placeholder="10010">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">CẤP ĐỘ NINJA</label>
+              <input type="number" id="addHeroLv" class="form-control" value="100" min="1" max="150">
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">SỐ SAO (1 - 5★)</label>
+              <select id="addHeroStar" class="form-select">
+                <option value="5" selected>5 Sao (Max)</option>
+                <option value="4">4 Sao</option>
+                <option value="3">3 Sao</option>
+                <option value="2">2 Sao</option>
+                <option value="1">1 Sao</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-bold text-secondary">THỨC TỈNH (AWAKE)</label>
+              <select id="addHeroAwake" class="form-select">
+                <option value="1" selected>Đã Thức Tỉnh</option>
+                <option value="0">Chưa Thức Tỉnh</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-gm btn-sm" onclick="submitAddHero()">Cấp Tướng Ngay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let globalData = { users: [], servers: [], giftcodes: [], catalogs: { items: [], heroes: [] }, stats: {} };
+
+    // Format Number with Commas
+    function fmt(n) {
+      return (n || 0).toLocaleString();
+    }
+
+    // Load Data from Server
+    async function loadData() {
+      try {
+        const res = await fetch('/api/data');
+        globalData = await res.json();
+        
+        // Update Stats
+        document.getElementById('stat-users').innerText = globalData.stats.totalUsers || 0;
+        document.getElementById('stat-online').innerText = globalData.stats.onlineCount || 0;
+        document.getElementById('stat-giftcodes').innerText = globalData.stats.totalGiftcodes || 0;
+        document.getElementById('giftcodeCountBadge').innerText = `${globalData.stats.totalGiftcodes || 0} Mã`;
+
+        // Update Public Links
+        const host = window.location.host;
+        const regUrl = `${window.location.protocol}//${host}/register`;
+        document.getElementById('publicRegisterLink').value = regUrl;
+        document.getElementById('qhinfoText').innerText = `${window.location.protocol}//${host}`;
+
+        // Populate Catalogs if empty
+        populateCatalogDropdowns();
+
+        renderUsers();
+        renderGiftcodes();
+        renderServers();
+      } catch (e) {
+        console.error('Lỗi tải dữ liệu:', e);
+      }
+    }
+
+    function populateCatalogDropdowns() {
+      const itemSel = document.getElementById('addItemSelect');
+      if (itemSel.options.length <= 1 && globalData.catalogs?.items) {
+        globalData.catalogs.items.forEach(it => {
+          const opt = document.createElement('option');
+          opt.value = it.id;
+          opt.textContent = `[${it.id}] ${it.name} (${it.category || 'Vật phẩm'})`;
+          itemSel.appendChild(opt);
+        });
+      }
+
+      const heroSel = document.getElementById('addHeroSelect');
+      if (heroSel.options.length <= 1 && globalData.catalogs?.heroes) {
+        globalData.catalogs.heroes.forEach(h => {
+          const opt = document.createElement('option');
+          opt.value = h.id;
+          opt.textContent = `[${h.id}] ${h.name} - ${h.title}`;
+          heroSel.appendChild(opt);
+        });
+      }
+    }
+
+    function onSelectItemCatalog(sel) {
+      if (sel.value) document.getElementById('addItemId').value = sel.value;
+    }
+
+    function onSelectHeroCatalog(sel) {
+      if (sel.value) document.getElementById('addHeroId').value = sel.value;
+    }
+
+    // Render Users Table
+    function renderUsers() {
+      const q = (document.getElementById('searchUser').value || '').toLowerCase().trim();
+      const tbody = document.getElementById('userTableBody');
+      const onlineUids = globalData.stats?.onlineUids || [];
+
+      const filtered = globalData.users.filter(u => {
+        return !q || u.username.toLowerCase().includes(q) || String(u.uid).includes(q) || (u.player_data?.team_name && u.player_data.team_name.toLowerCase().includes(q));
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-secondary">Không tìm thấy người chơi nào</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(u => {
+        const pd = u.player_data || {};
+        const isOnline = onlineUids.includes(String(u.uid));
+        const isBanned = u.status === 'banned';
+
+        return `
+          <tr>
+            <td>
+              <strong class="text-warning">#${u.uid}</strong>
+              ${isOnline ? '<span class="badge bg-success ms-1" style="font-size:0.65rem">ONLINE</span>' : ''}
+            </td>
+            <td>
+              <div class="fw-bold text-white">${u.username}</div>
+              <small class="text-secondary"><i class="fa-solid fa-signature me-1"></i>${pd.team_name || 'Chưa đặt tên'}</small>
+            </td>
+            <td>
+              <span class="badge bg-primary me-1">Lv.${pd.level || u.level || 1}</span>
+              <span class="badge-vip">VIP ${pd.vip !== undefined ? pd.vip : (u.vip || 0)}</span>
+            </td>
+            <td>
+              <span class="text-warning me-2"><i class="fa-solid fa-coins me-1"></i>${fmt(pd.gold || u.gold)}</span>
+              <span class="text-info"><i class="fa-solid fa-gem me-1"></i>${fmt(pd.stone || u.diamond)}</span><br>
+              <small class="text-danger me-2"><i class="fa-solid fa-bolt me-1"></i>${fmt(pd.sp || 0)} SP</small>
+            </td>
+            <td>
+              ${isBanned ? '<span class="badge bg-danger">Bị Khóa</span>' : '<span class="badge bg-success">Hoạt Động</span>'}
+            </td>
+            <td class="text-center">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-info" title="Sửa Chỉ Số" onclick="openEditUser('${u.uid}')">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="btn btn-outline-warning" title="Tặng Item" onclick="openAddItem('${u.uid}')">
+                  <i class="fa-solid fa-box-open"></i>
+                </button>
+                <button class="btn btn-outline-primary" title="Cấp Tướng" onclick="openAddHero('${u.uid}')">
+                  <i class="fa-solid fa-user-ninja"></i>
+                </button>
+                <button class="btn btn-outline-${isBanned ? 'success' : 'danger'}" title="${isBanned ? 'Mở Khóa' : 'Khóa Tài Khoản'}" onclick="toggleBanUser('${u.uid}')">
+                  <i class="fa-solid fa-${isBanned ? 'lock-open' : 'ban'}"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Render Giftcodes Table
+    function renderGiftcodes() {
+      const tbody = document.getElementById('giftcodeTableBody');
+      const codes = globalData.giftcodes || [];
+
+      if (codes.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-secondary">Chưa có mã Giftcode nào</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = codes.map(g => {
+        const rw = g.rewards || {};
+        const rewardParts = [];
+        if (rw.gold) rewardParts.push(`<span class="text-warning">${fmt(rw.gold)} Vàng</span>`);
+        if (rw.stone) rewardParts.push(`<span class="text-info">${fmt(rw.stone)} KC</span>`);
+        if (rw.sp) rewardParts.push(`<span class="text-danger">${rw.sp} SP</span>`);
+        if (rw.items && rw.items.length > 0) rewardParts.push(`<span class="text-success">${rw.items.length} Vật phẩm</span>`);
+
+        const isExpired = g.expiresAt && new Date(g.expiresAt) < new Date();
+        const isActive = g.active && !isExpired;
+
+        return `
+          <tr>
+            <td>
+              <span class="code-box">${g.code}</span>
+              <button class="btn btn-xs btn-outline-secondary btn-sm ms-1" title="Copy mã" onclick="copyText('${g.code}')">
+                <i class="fa-solid fa-copy"></i>
+              </button>
+            </td>
+            <td><small>${rewardParts.join(', ') || 'Không có'}</small></td>
+            <td><span class="badge bg-secondary">${g.usedCount || 0} / ${g.maxUses >= 999999 ? '∞' : g.maxUses}</span></td>
+            <td>
+              ${isExpired ? '<span class="badge bg-danger">Hết Hạn</span>' : (isActive ? '<span class="badge bg-success">Hoạt Động</span>' : '<span class="badge bg-warning text-dark">Đã Khóa</span>')}
+            </td>
+            <td class="text-end">
+              <button class="btn btn-xs btn-outline-warning btn-sm me-1" onclick="toggleGiftcode('${g.code}')" title="Bật/Tắt">
+                <i class="fa-solid fa-power-off"></i>
+              </button>
+              <button class="btn btn-xs btn-outline-danger btn-sm" onclick="deleteGiftcode('${g.code}')" title="Xóa">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Render Servers Table
+    function renderServers() {
+      const tbody = document.getElementById('serverTableBody');
+      const servers = globalData.servers || [];
+
+      tbody.innerHTML = servers.map(s => `
         <tr>
           <td><strong>#${s.serverId}</strong></td>
           <td>${s.serverName}</td>
           <td><code>${s.serverip}</code></td>
           <td><code>${s.serverport}</code></td>
           <td>${s.status === 1 ? '<span class="badge bg-success">Online</span>' : '<span class="badge bg-danger">Bảo trì</span>'}</td>
-          <td>
+          <td class="text-end">
             <button class="btn btn-xs btn-outline-warning btn-sm" onclick="toggleServer(${s.serverId})">
-              <i class="fa-solid fa-power-off"></i>
+              <i class="fa-solid fa-power-off me-1"></i> Bật/Tắt
             </button>
           </td>
         </tr>
       `).join('');
+    }
 
-      // Render Users
-      const userTbody = document.getElementById('user-list');
-      userTbody.innerHTML = data.users.map(u => `
-        <tr>
-          <td>${u.uid}</td>
-          <td><strong>${u.username}</strong></td>
-          <td><span class="badge ${u.role === 'admin' ? 'bg-danger' : 'bg-secondary'}">${u.role}</span></td>
-          <td><span class="text-warning">${(u.gold||0).toLocaleString()} 🪙</span><br><span class="text-info">${(u.diamond||0).toLocaleString()} 💎</span></td>
-          <td>Lv.${u.level || 1} / VIP ${u.vip || 0}</td>
-          <td>
-            <button class="btn btn-xs btn-outline-info btn-sm" onclick="editUser('${u.uid}')"><i class="fa-solid fa-pen"></i></button>
-          </td>
-        </tr>
-      `).join('');
+    // ==========================================
+    // ACTIONS & MODALS
+    // ==========================================
+
+    function openEditUser(uid) {
+      const u = globalData.users.find(x => String(x.uid) === String(uid));
+      if (!u) return;
+      const pd = u.player_data || {};
+      document.getElementById('editUid').value = u.uid;
+      document.getElementById('editTeamName').value = pd.team_name || u.username;
+      document.getElementById('editLevel').value = pd.level || u.level || 100;
+      document.getElementById('editVip').value = pd.vip !== undefined ? pd.vip : (u.vip || 15);
+      document.getElementById('editGold').value = pd.gold || u.gold || 99999999;
+      document.getElementById('editStone').value = pd.stone || u.diamond || 99999999;
+      document.getElementById('editSp').value = pd.sp !== undefined ? pd.sp : 300;
+      document.getElementById('editArena').value = pd.arena_point || 999999;
+
+      new bootstrap.Modal(document.getElementById('modalEditUser')).show();
+    }
+
+    async function saveUserEdit() {
+      const uid = document.getElementById('editUid').value;
+      const team_name = document.getElementById('editTeamName').value;
+      const level = parseInt(document.getElementById('editLevel').value);
+      const vip = parseInt(document.getElementById('editVip').value);
+      const gold = parseInt(document.getElementById('editGold').value);
+      const stone = parseInt(document.getElementById('editStone').value);
+      const sp = parseInt(document.getElementById('editSp').value);
+      const arena_point = parseInt(document.getElementById('editArena').value);
+
+      await fetch('/api/user/edit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, team_name, level, vip, gold, diamond: stone, stone, sp, arena_point })
+      });
+
+      bootstrap.Modal.getInstance(document.getElementById('modalEditUser')).hide();
+      loadData();
+    }
+
+    function openAddItem(uid) {
+      document.getElementById('addItemUid').value = uid;
+      document.getElementById('addItemId').value = '40010';
+      document.getElementById('addItemCount').value = '100';
+      new bootstrap.Modal(document.getElementById('modalAddItem')).show();
+    }
+
+    async function submitAddItem() {
+      const uid = document.getElementById('addItemUid').value;
+      const itemId = document.getElementById('addItemId').value;
+      const count = parseInt(document.getElementById('addItemCount').value || 1);
+
+      if (!itemId) return alert('Vui lòng nhập ID vật phẩm!');
+
+      await fetch('/api/user/item/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, itemId, count })
+      });
+
+      bootstrap.Modal.getInstance(document.getElementById('modalAddItem')).hide();
+      alert(`Đã thêm thành công ${count}x vật phẩm [${itemId}] vào túi đồ!`);
+      loadData();
+    }
+
+    function openAddHero(uid) {
+      document.getElementById('addHeroUid').value = uid;
+      document.getElementById('addHeroId').value = '10200';
+      document.getElementById('addHeroLv').value = '100';
+      document.getElementById('addHeroStar').value = '5';
+      new bootstrap.Modal(document.getElementById('modalAddHero')).show();
+    }
+
+    async function submitAddHero() {
+      const uid = document.getElementById('addHeroUid').value;
+      const heroId = document.getElementById('addHeroId').value;
+      const lv = parseInt(document.getElementById('addHeroLv').value || 100);
+      const star = parseInt(document.getElementById('addHeroStar').value || 5);
+      const has_awake = parseInt(document.getElementById('addHeroAwake').value || 1);
+
+      if (!heroId) return alert('Vui lòng chọn hoặc nhập ID Ninja!');
+
+      await fetch('/api/user/hero/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, heroId, lv, star, has_awake })
+      });
+
+      bootstrap.Modal.getInstance(document.getElementById('modalAddHero')).hide();
+      alert(`Đã cấp thành công Tướng Ninja [${heroId}] (${star}★, Lv.${lv})!`);
+      loadData();
+    }
+
+    async function toggleBanUser(uid) {
+      if (!confirm('Bạn có chắc muốn đổi trạng thái Khóa/Mở khóa tài khoản này?')) return;
+      await fetch('/api/user/ban', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid })
+      });
+      loadData();
+    }
+
+    function generateRandomCode() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let res = 'KONOHA-';
+      for (let i = 0; i < 6; i++) {
+        res += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('gcCode').value = res;
+    }
+
+    function addGiftcodeItemRow() {
+      const container = document.getElementById('giftcodeItemsContainer');
+      const div = document.createElement('div');
+      div.className = 'd-flex gap-2 align-items-center';
+
+      let opts = '<option value="">-- Chọn vật phẩm --</option>';
+      if (globalData.catalogs?.items) {
+        globalData.catalogs.items.forEach(it => {
+          opts += `<option value="${it.id}">[${it.id}] ${it.name}</option>`;
+        });
+      }
+
+      div.innerHTML = `
+        <select class="form-select form-select-sm gc-item-id" style="flex:2">
+          ${opts}
+        </select>
+        <input type="number" class="form-control form-control-sm gc-item-count" placeholder="Số lượng" value="50" style="flex:1" min="1">
+        <button type="button" class="btn btn-xs btn-outline-danger btn-sm" onclick="this.parentElement.remove()">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      `;
+      container.appendChild(div);
+    }
+
+    async function handleCreateGiftcode(e) {
+      e.preventDefault();
+      const code = document.getElementById('gcCode').value.trim();
+      const gold = parseInt(document.getElementById('gcGold').value || 0);
+      const stone = parseInt(document.getElementById('gcStone').value || 0);
+      const sp = parseInt(document.getElementById('gcSp').value || 0);
+      const arena_point = parseInt(document.getElementById('gcArena').value || 0);
+      const maxUses = parseInt(document.getElementById('gcMaxUses').value || 999999);
+      const expiresAt = document.getElementById('gcExpiresAt').value || null;
+
+      const items = [];
+      document.querySelectorAll('#giftcodeItemsContainer > div').forEach(row => {
+        const id = row.querySelector('.gc-item-id').value;
+        const count = parseInt(row.querySelector('.gc-item-count').value || 0);
+        if (id && count > 0) items.push({ id: parseInt(id), count });
+      });
+
+      const res = await fetch('/api/giftcode/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, gold, stone, sp, arena_point, maxUses, expiresAt, items })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        alert(`Tạo mã Giftcode [${code}] thành công!`);
+        document.getElementById('createCodeForm').reset();
+        document.getElementById('giftcodeItemsContainer').innerHTML = '';
+        loadData();
+      } else {
+        alert(data.msg || 'Lỗi tạo Giftcode!');
+      }
+    }
+
+    async function toggleGiftcode(code) {
+      await fetch('/api/giftcode/toggle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code })
+      });
+      loadData();
+    }
+
+    async function deleteGiftcode(code) {
+      if (!confirm(`Bạn có chắc muốn xóa vĩnh viễn mã Giftcode "${code}"?`)) return;
+      await fetch('/api/giftcode/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code })
+      });
+      loadData();
     }
 
     async function toggleServer(id) {
@@ -171,10 +977,10 @@
       loadData();
     }
 
-    async function addServer() {
-      const name = prompt('Nhập tên server mới:', 'S2 - Làng Lá Private');
+    async function openAddServerModal() {
+      const name = prompt('Nhập tên server mới:', 'S2 - Làng Cát');
       if (!name) return;
-      const ip = prompt('Nhập IP server:', '127.0.0.1');
+      const ip = prompt('Nhập IP Server:', '192.168.0.152');
       const port = parseInt(prompt('Nhập cổng WebSocket:', '9001') || '9001');
       await fetch('/api/server/add', {
         method: 'POST',
@@ -184,33 +990,31 @@
       loadData();
     }
 
-    async function addUser() {
+    function openAddUserModal() {
       const username = prompt('Nhập tên đăng nhập mới:');
       if (!username) return;
       const password = prompt('Nhập mật khẩu:', '123456');
-      await fetch('/api/user/add', {
+      fetch('/api/user/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, role: 'user' })
-      });
-      loadData();
+        body: JSON.stringify({ username, password })
+      }).then(() => loadData());
     }
 
-    async function editUser(uid) {
-      const gold = parseInt(prompt('Nhập số vàng (Gold):', '99999999') || '0');
-      const diamond = parseInt(prompt('Nhập kim cương (Diamond):', '99999999') || '0');
-      const level = parseInt(prompt('Nhập cấp độ (Level):', '100') || '1');
-      const vip = parseInt(prompt('Nhập cấp VIP:', '15') || '0');
-      await fetch('/api/user/edit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uid, gold, diamond, level, vip })
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert(`Đã sao chép: ${text}`);
       });
-      loadData();
     }
 
+    function copyRegisterLink() {
+      const input = document.getElementById('publicRegisterLink');
+      copyText(input.value);
+    }
+
+    // Auto load on init
     loadData();
-    setInterval(loadData, 5000);
+    setInterval(loadData, 4000);
   </script>
 </body>
 </html>

@@ -16,22 +16,347 @@
       "username": "admin",
       "password": "123",
       "role": "admin",
-      "gold": 99999999,
-      "diamond": 99999999,
+      "status": "active",
+      "gold": 100898887,
+      "diamond": 100008887,
       "level": 100,
       "vip": 15,
-      "created_at": "2026-11-08T12:00:00.000Z"
+      "created_at": "2026-11-08T12:00:00.000Z",
+      "player_data": {
+        "team_name": "Admin Naruto",
+        "level": 100,
+        "vip": 15,
+        "gold": 100898887,
+        "stone": 100008887,
+        "sp": 450,
+        "arena_point": 999999,
+        "items": {
+          "10010": {
+            "id": 10010,
+            "count": 9999
+          },
+          "10020": {
+            "id": 10020,
+            "count": 9999
+          },
+          "10030": {
+            "id": 10030,
+            "count": 9999
+          },
+          "10040": {
+            "id": 10040,
+            "count": 9999
+          },
+          "10050": {
+            "id": 10050,
+            "count": 9999
+          },
+          "10100": {
+            "id": 10100,
+            "count": 10019
+          },
+          "10310": {
+            "id": 10310,
+            "count": 10
+          },
+          "20010": {
+            "id": 20010,
+            "count": 9999
+          },
+          "30010": {
+            "id": 30010,
+            "count": 9999
+          },
+          "40010": {
+            "id": 40010,
+            "count": 10049
+          }
+        },
+        "heros": {
+          "10010": {
+            "id": 10010,
+            "hero_id": 10010,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10020": {
+            "id": 10020,
+            "hero_id": 10020,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10030": {
+            "id": 10030,
+            "hero_id": 10030,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10040": {
+            "id": 10040,
+            "hero_id": 10040,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10050": {
+            "id": 10050,
+            "hero_id": 10050,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10100": {
+            "id": 10100,
+            "hero_id": 10100,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          }
+        },
+        "used_codes": [
+          "TEST_CODE_3183"
+        ]
+      }
     },
     {
       "uid": "10002",
       "username": "210920",
       "password": "210920",
       "role": "user",
+      "status": "active",
       "gold": 99999999,
       "diamond": 99999999,
       "level": 100,
       "vip": 15,
-      "created_at": "2026-11-08T06:06:19.215Z"
+      "created_at": "2026-11-08T06:06:19.215Z",
+      "player_data": {
+        "team_name": "Shinobi 210920",
+        "level": 100,
+        "vip": 15,
+        "gold": 99999999,
+        "stone": 99999999,
+        "sp": 300,
+        "arena_point": 999999,
+        "items": {
+          "10010": {
+            "id": 10010,
+            "count": 9999
+          },
+          "10020": {
+            "id": 10020,
+            "count": 9999
+          },
+          "10030": {
+            "id": 10030,
+            "count": 9999
+          },
+          "10040": {
+            "id": 10040,
+            "count": 9999
+          },
+          "10050": {
+            "id": 10050,
+            "count": 9999
+          },
+          "10100": {
+            "id": 10100,
+            "count": 9999
+          },
+          "20010": {
+            "id": 20010,
+            "count": 9999
+          },
+          "30010": {
+            "id": 30010,
+            "count": 9999
+          },
+          "40010": {
+            "id": 40010,
+            "count": 9999
+          }
+        },
+        "heros": {
+          "10010": {
+            "id": 10010,
+            "hero_id": 10010,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10020": {
+            "id": 10020,
+            "hero_id": 10020,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10030": {
+            "id": 10030,
+            "hero_id": 10030,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10040": {
+            "id": 10040,
+            "hero_id": 10040,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10050": {
+            "id": 10050,
+            "hero_id": 10050,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          },
+          "10100": {
+            "id": 10100,
+            "hero_id": 10100,
+            "lv": 100,
+            "exp": 0,
+            "quality": 1,
+            "star": 5,
+            "status": 0,
+            "has_awake": 1
+          }
+        },
+        "used_codes": []
+      }
+    }
+  ],
+  "giftcodes": [
+    {
+      "code": "NARUTO2026",
+      "rewards": {
+        "gold": 5000000,
+        "stone": 20000,
+        "sp": 300,
+        "arena_point": 5000,
+        "items": [
+          {
+            "id": 40010,
+            "count": 100
+          },
+          {
+            "id": 10100,
+            "count": 80
+          },
+          {
+            "id": 20010,
+            "count": 50
+          },
+          {
+            "id": 30010,
+            "count": 20
+          }
+        ]
+      },
+      "maxUses": 999999,
+      "usedCount": 0,
+      "usedUsers": [],
+      "createdAt": "2026-11-09T00:00:00.000Z",
+      "expiresAt": "2027-12-31T23:59:59.000Z",
+      "active": true
+    },
+    {
+      "code": "TANTHU",
+      "rewards": {
+        "gold": 2000000,
+        "stone": 10000,
+        "sp": 200,
+        "arena_point": 2000,
+        "items": [
+          {
+            "id": 40010,
+            "count": 50
+          },
+          {
+            "id": 10010,
+            "count": 50
+          },
+          {
+            "id": 30010,
+            "count": 10
+          }
+        ]
+      },
+      "maxUses": 999999,
+      "usedCount": 0,
+      "usedUsers": [],
+      "createdAt": "2026-11-09T00:00:00.000Z",
+      "expiresAt": "2027-12-31T23:59:59.000Z",
+      "active": true
+    },
+    {
+      "code": "VIP999",
+      "rewards": {
+        "gold": 10000000,
+        "stone": 50000,
+        "sp": 500,
+        "arena_point": 10000,
+        "items": [
+          {
+            "id": 40010,
+            "count": 300
+          },
+          {
+            "id": 10200,
+            "count": 100
+          },
+          {
+            "id": 10400,
+            "count": 100
+          },
+          {
+            "id": 30020,
+            "count": 50
+          }
+        ]
+      },
+      "maxUses": 999999,
+      "usedCount": 0,
+      "usedUsers": [],
+      "createdAt": "2026-11-09T00:00:00.000Z",
+      "expiresAt": "2027-12-31T23:59:59.000Z",
+      "active": true
     }
   ],
   "notifications": [

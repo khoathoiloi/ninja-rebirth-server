@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Ký Tài Khoản - Ninja Rebirth Online</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #f97316;
+      --primary-hover: #ea580c;
+      --bg-dark: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.95);
+      --border-color: rgba(249, 115, 22, 0.25);
+    }
+    body {
+      background: radial-gradient(circle at top center, #1e1b4b 0%, #090d16 80%);
+      color: #f8fafc;
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 15px;
+    }
+    .register-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 115, 22, 0.15);
+      overflow: hidden;
+      max-width: 520px;
+      width: 100%;
+    }
+    .card-banner {
+      background: linear-gradient(135deg, #ea580c 0%, #b91c1c 100%);
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .banner-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .banner-subtitle {
+      color: #fed7aa;
+      font-size: 0.95rem;
+      margin-top: 5px;
+    }
+    .form-control {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+    }
+    .form-control:focus {
+      background-color: #0f172a;
+      border-color: var(--primary-color);
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25);
+    }
+    .btn-register {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      width: 100%;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+      transition: all 0.25s ease;
+    }
+    .btn-register:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6);
+      transform: translateY(-1px);
+    }
+    .starter-pack {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px dashed rgba(249, 115, 22, 0.4);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 25px;
+    }
+    .badge-gift {
+      background: rgba(249, 115, 22, 0.2);
+      color: #fdba74;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      margin: 3px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-card">
+    <div class="card-banner">
+      <i class="fa-solid fa-fire-flame-curved fa-2x mb-2 text-warning"></i>
+      <h1 class="banner-title">NINJA REBIRTH</h1>
+      <p class="banner-subtitle">Hội Quán Làng Lá - Cổng Đăng Ký Tài Khoản Trực Tuyến</p>
+    </div>
+
+    <div class="p-4 p-md-5">
+      <!-- Starter Pack Rewards Card -->
+      <div class="starter-pack">
+        <div class="d-flex align-items-center mb-2">
+          <i class="fa-solid fa-gift text-warning me-2"></i>
+          <strong class="text-warning small text-uppercase">Quà Tặng Khởi Nghiệp Tân Thủ</strong>
+        </div>
+        <div>
+          <span class="badge-gift"><i class="fa-solid fa-coins me-1"></i> 5,000,000 Vàng</span>
+          <span class="badge-gift"><i class="fa-solid fa-gem me-1"></i> 20,000 Kim Cương</span>
+          <span class="badge-gift"><i class="fa-solid fa-star me-1"></i> Cấp 50 / VIP 5</span>
+          <span class="badge-gift"><i class="fa-solid fa-bolt me-1"></i> 300 Thể Lực SP</span>
+          <span class="badge-gift"><i class="fa-solid fa-user-ninja me-1"></i> Đội Hình 4 Sao</span>
+          <span class="badge-gift"><i class="fa-solid fa-certificate me-1"></i> 100 Đá Thần</span>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <form id="regForm" onsubmit="handleRegister(event)">
+        <div class="mb-3">
+          <label class="form-label text-secondary small fw-bold">TÊN ĐĂNG NHẬP (USERNAME)</label>
+          <div class="input-group">
+            <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-user"></i></span>
+            <input type="text" id="username" class="form-control" placeholder="Nhập từ 3-20 ký tự (không dấu)" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label text-secondary small fw-bold">MẬT KHẨU (PASSWORD)</label>
+          <div class="input-group">
+            <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" id="password" class="form-control" placeholder="Tối thiểu 3 ký tự" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label text-secondary small fw-bold">XÁC NHẬN MẬT KHẨU</label>
+          <div class="input-group">
+            <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-shield-halved"></i></span>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label text-secondary small fw-bold">TÊN NHÂN VẬT INGAME (BIỆT DANH)</label>
+          <div class="input-group">
+            <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-signature"></i></span>
+            <input type="text" id="nickname" class="form-control" placeholder="VD: Hokage Đệ Cửu">
+          </div>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="btn btn-register mb-3">
+          <i class="fa-solid fa-user-plus me-2"></i> TẠO TÀI KHOẢN NGAY
+        </button>
+
+        <div id="alertBox" class="alert d-none small"></div>
+
+        <div class="text-center mt-3">
+          <a href="/admin" class="text-secondary small text-decoration-none">
+            <i class="fa-solid fa-sliders me-1"></i> Bảng điều khiển Quản trị viên (GM Panel)
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    async function handleRegister(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+      const nickname = document.getElementById('nickname').value.trim();
+      const alertBox = document.getElementById('alertBox');
+      const btnSubmit = document.getElementById('btnSubmit');
+
+      alertBox.className = 'alert d-none small';
+
+      if (password !== confirmPassword) {
+        alertBox.className = 'alert alert-danger small';
+        alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Mật khẩu xác nhận không khớp!';
+        return;
+      }
+
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Đang khởi tạo nhẫn giả...';
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, nickname })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          alertBox.className = 'alert alert-success small';
+          alertBox.innerHTML = `
+            <strong><i class="fa-solid fa-circle-check me-1"></i> Đăng ký thành công!</strong><br>
+            Mã UID Nhẫn Giả: <code>${data.uid}</code><br>
+            Tài khoản: <strong>${data.username}</strong><br>
+            <em>Bây giờ bạn có thể mở game trên điện thoại/giả lập để đăng nhập và chiến ngay!</em>
+          `;
+          document.getElementById('regForm').reset();
+        } else {
+          alertBox.className = 'alert alert-danger small';
+          alertBox.innerHTML = `<i class="fa-solid fa-circle-xmark me-1"></i> ${data.msg || 'Đăng ký thất bại!'}`;
+        }
+      } catch (err) {
+        alertBox.className = 'alert alert-danger small';
+        alertBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation me-1"></i> Lỗi máy chủ: ${err.message}`;
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = '<i class="fa-solid fa-user-plus me-2"></i> TẠO TÀI KHOẢN NGAY';
+      }
+    }
+  </script>
+</body>
+</html>
