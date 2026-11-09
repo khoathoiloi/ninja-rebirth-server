@@ -320,14 +320,18 @@ console.log(`[Admin Panel] Quản trị GM: http://localhost:8080/admin`);
 // ==========================================
 const wss = new WebSocketServer({ port: WS_PORT });
 
-// Helper: Send WebSocket packet with 4-byte Big-Endian length header (required by Cocos Netty client)
+// Helper: Send WebSocket packet with 4-byte length prefix as a TEXT frame (required by Cocos Netty client)
 function sendWsPacket(ws, obj) {
   try {
     const jsonStr = typeof obj === 'string' ? obj : JSON.stringify(obj);
-    const jsonBuf = Buffer.from(jsonStr, 'utf8');
-    const lenBuf = Buffer.alloc(4);
-    lenBuf.writeUInt32BE(jsonBuf.length, 0);
-    ws.send(Buffer.concat([lenBuf, jsonBuf]));
+    const jsonLen = Buffer.byteLength(jsonStr, 'utf8');
+    const p1 = (jsonLen >> 24) & 0xFF;
+    const p2 = (jsonLen >> 16) & 0xFF;
+    const p3 = (jsonLen >> 8) & 0xFF;
+    const p4 = jsonLen & 0xFF;
+    const header = String.fromCharCode(p1, p2, p3, p4);
+    // Crucial: Must be sent as a TEXT frame (String), NOT a Buffer!
+    ws.send(header + jsonStr);
   } catch (e) {
     console.error('[WebSocket] Lỗi gửi gói tin:', e.message);
   }
@@ -338,8 +342,15 @@ wss.on('connection', (ws, req) => {
   console.log(`\n>>> [WebSocket] Client vừa kết nối: ${ip}`);
 
   ws.on('message', (message) => {
-    const msgStr = message.toString('utf8');
-    console.log(`[WebSocket] Nhận được gói tin từ Client:\n${msgStr}`);
+    let msgStr = message.toString('utf8');
+    // Strip binary/length prefix if sent by client
+    if (msgStr.charCodeAt(0) < 32 && msgStr.includes('{')) {
+      const braceIdx = msgStr.indexOf('{');
+      if (braceIdx > 0) {
+        msgStr = msgStr.substring(braceIdx);
+      }
+    }
+    console.log(`[WebSocket] Nhận được gói tin từ Client: ${msgStr}`);
 
     try {
       const pkg = JSON.parse(msgStr);
@@ -387,6 +398,87 @@ wss.on('connection', (ws, req) => {
             error: 0
           });
         }
+      } else if (cmd === 'PlayerInfo') {
+        console.log(`>>> [WebSocket] Gửi thông tin PlayerInfo...`);
+        sendWsPacket(ws, {
+          func_name: 'PlayerInfo',
+          data: {
+            player: {
+              id: 10001,
+              user_id: 10001,
+              user_name: "Admin Naruto",
+              platform: "android",
+              create_time: Math.floor(Date.now() / 1000),
+              last_signin_time: Math.floor(Date.now() / 1000),
+              last_signin_ip: "127.0.0.1"
+            },
+            player_attr: {
+              team_name: "Admin Naruto",
+              team_lv: 100,
+              team_exp: 0,
+              vip_lv: 15,
+              vip_exp: 0,
+              gold: 99999999,
+              stone: 99999999,
+              sp: 200,
+              arena_point: 999999
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'BagInfo') {
+        console.log(`>>> [WebSocket] Gửi thông tin BagInfo...`);
+        sendWsPacket(ws, {
+          func_name: 'BagInfo',
+          data: {
+            items: {},
+            equip: {}
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetSecrets') {
+        console.log(`>>> [WebSocket] Gửi thông tin GetSecrets...`);
+        sendWsPacket(ws, {
+          func_name: 'GetSecrets',
+          data: {
+            secrets: []
+          },
+          error: 0
+        });
+      } else if (cmd === 'ChapterInfo') {
+        console.log(`>>> [WebSocket] Gửi thông tin ChapterInfo...`);
+        sendWsPacket(ws, {
+          func_name: 'ChapterInfo',
+          data: {
+            chapters: {
+              "1": [],
+              "2": [],
+              "3": [],
+              "4": [],
+              "5": [],
+              "8": []
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetHeros') {
+        console.log(`>>> [WebSocket] Gửi thông tin GetHeros...`);
+        sendWsPacket(ws, {
+          func_name: 'GetHeros',
+          data: {
+            heros: {}
+          },
+          error: 0
+        });
+      } else if (cmd === 'BeastInfo') {
+        console.log(`>>> [WebSocket] Gửi thông tin BeastInfo -> Khởi tạo MainScene...`);
+        sendWsPacket(ws, {
+          func_name: 'BeastInfo',
+          data: {
+            Beasts: {}
+          },
+          error: 0
+        });
       } else if (cmd === 'Time') {
         sendWsPacket(ws, {
           func_name: 'Time',
@@ -394,7 +486,7 @@ wss.on('connection', (ws, req) => {
           error: 0
         });
       } else {
-        // Echo response for other commands (PlayerInfo, BagInfo, etc.)
+        console.log(`>>> [WebSocket] Xử lý gói tin khác: ${cmd}`);
         sendWsPacket(ws, {
           func_name: cmd,
           data: {},
