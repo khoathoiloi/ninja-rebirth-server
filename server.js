@@ -3,6 +3,43 @@ const fs = require('fs');
 const path = require('path');
 const { WebSocketServer } = require('ws');
 
+// --- Logger: Ghi log đồng thời ra console và file server.log ---
+const LOG_FILE = path.join(__dirname, 'server.log');
+const origLog = console.log;
+const origError = console.error;
+const origWarn = console.warn;
+
+function formatLog(prefix, args) {
+  const time = new Date().toISOString().replace('T', ' ').substring(0, 19);
+  const text = args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' ');
+  return `[${time}] ${prefix ? prefix + ' ' : ''}${text}`;
+}
+
+console.log = function(...args) {
+  const line = formatLog('', args);
+  origLog.apply(console, args);
+  try { fs.appendFileSync(LOG_FILE, line + '\n', 'utf8'); } catch (e) {}
+};
+
+console.error = function(...args) {
+  const line = formatLog('[ERROR]', args);
+  origError.apply(console, args);
+  try { fs.appendFileSync(LOG_FILE, line + '\n', 'utf8'); } catch (e) {}
+};
+
+console.warn = function(...args) {
+  const line = formatLog('[WARN]', args);
+  origWarn.apply(console, args);
+  try { fs.appendFileSync(LOG_FILE, line + '\n', 'utf8'); } catch (e) {}
+};
+
+process.on('uncaughtException', (err) => {
+  console.error('[CRITICAL UNCAUGHT EXCEPTION]:', err.stack || err.message);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[CRITICAL UNHANDLED REJECTION]:', reason);
+});
+
 const HTTP_PORTS = [80, 8080];
 const WS_PORT = 9001;
 const DB_FILE = path.join(__dirname, 'data', 'db.json');
@@ -358,46 +395,50 @@ wss.on('connection', (ws, req) => {
 
       if (cmd === 'Login') {
         const params = pkg.params || [];
-        const roleId = params[2]; // When selecting a specific role
-        if (roleId) {
-          console.log(`>>> [WebSocket] Client chọn Role ID ${roleId} -> Vào Game thành công!`);
-          sendWsPacket(ws, {
-            func_name: 'Login',
-            data: {
-              player_id: roleId,
-              user_id: params[0] || '10001',
-              team_name: "Admin Naruto",
-              team_lv: 100,
-              vip_lv: 15,
-              gold: 99999999,
-              diamond: 99999999,
-              power: 999999
-            },
-            error: 0
-          });
-        } else {
-          console.log(`>>> [WebSocket] Client yêu cầu Đăng Nhập (Login) -> Gửi danh sách roles`);
-          sendWsPacket(ws, {
-            func_name: 'Login',
-            data: {
-              roles: [
-                {
-                  player_id: 10001,
-                  id: 10001,
-                  team_name: "Admin Naruto",
-                  name: "Admin Naruto",
-                  team_lv: 100,
-                  level: 100,
-                  vip: 15,
-                  gold: 99999999,
-                  diamond: 99999999,
-                  icon: 10010
-                }
-              ]
-            },
-            error: 0
-          });
-        }
+        const roleId = params[2] || 10001;
+        console.log(`>>> [WebSocket] Client Login (UserId: ${params[0] || '10001'}, RoleId: ${roleId}) -> Vào Game!`);
+        // Trả về dữ liệu người chơi trực tiếp (không gửi roles để bỏ qua dialog chọn nhân vật và vào thẳng game)
+        sendWsPacket(ws, {
+          func_name: 'Login',
+          data: {
+            player_id: roleId,
+            user_id: params[0] || '10001',
+            team_name: "Admin Naruto",
+            team_lv: 100,
+            vip_lv: 15,
+            gold: 99999999,
+            diamond: 99999999,
+            power: 999999
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetLastGuide') {
+        console.log(`>>> [WebSocket] Client yêu cầu GetLastGuide -> Gửi lastGuideId: 100 (Bỏ qua tân thủ)`);
+        sendWsPacket(ws, {
+          func_name: 'GetLastGuide',
+          data: {
+            lastGuideId: 100
+          },
+          error: 0
+        });
+      } else if (cmd === 'Get') {
+        const key = (pkg.params && pkg.params[0]) || '';
+        console.log(`>>> [WebSocket] Client yêu cầu Get (${key})`);
+        sendWsPacket(ws, {
+          func_name: 'Get',
+          data: {
+            value: 1
+          },
+          error: 0
+        });
+      } else if (cmd === 'SetLastGuide' || cmd === 'Set') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {
+            success: 1
+          },
+          error: 0
+        });
       } else if (cmd === 'PlayerInfo') {
         console.log(`>>> [WebSocket] Gửi thông tin PlayerInfo...`);
         sendWsPacket(ws, {
@@ -450,14 +491,7 @@ wss.on('connection', (ws, req) => {
         sendWsPacket(ws, {
           func_name: 'ChapterInfo',
           data: {
-            chapters: {
-              "1": [],
-              "2": [],
-              "3": [],
-              "4": [],
-              "5": [],
-              "8": []
-            }
+            chapters: {} // Empty object để an toàn, không chứa "1": [] gây lỗi [0].chapter_id
           },
           error: 0
         });
