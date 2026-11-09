@@ -148,21 +148,27 @@ async function handleRequest(req, res) {
   // 1. Client Config Data (Game.initConfigData)
   if (pathname.includes('clientConfigData.json')) {
     console.log('>>> [Game Client] Đang tải clientConfigData.json...');
+    const packageMap = {
+      "com.fpx.ninja.gp": "quickgame",
+      "cct.com.fpx.ninja.gp": "quickgame",
+      "com.fpx.ninja": "quickgame",
+      "com.huoying.test": "quickgame",
+      "com.nr.web": "quickgame",
+      "com.nrmr.gp4": "quickgame",
+      "com.nrmr.gp4.apk": "quickgame",
+      "packageName error": "quickgame",
+      "official": "quickgame",
+      "quickgame": "quickgame"
+    };
     const configData = {
       language_list: ["en", "vn", "zh", "th", "id"],
-      package_sdk: {
-        "com.nr.web": "quickgame",
-        "com.nrmr.gp4": "quickgame",
-        "com.nrmr.gp4.apk": "quickgame",
-        "packageName error": "quickgame",
-        "official": "official",
-        "quickgame": "quickgame"
-      },
+      package_sdk: packageMap,
+      packageNameMap: packageMap,
       costGold: 100,
       playerName: "Admin",
-      hotfix_version: "1.0.0.3",
+      hotfix_version: "1.0.0.11",
       review: 0,
-      version: "1.0.0.3"
+      version: "1.0.0.11"
     };
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify(configData));
@@ -170,19 +176,19 @@ async function handleRequest(req, res) {
 
   // 2. Project Manifest / Version Manifest
   if (pathname.includes('version.manifest')) {
-    console.log('>>> [Game Client] Yêu cầu version.manifest -> Trả về version 1.0.0.3 (ALREADY_UP_TO_DATE)');
+    console.log('>>> [Game Client] Yêu cầu version.manifest -> Trả về version 1.0.0.11 (ALREADY_UP_TO_DATE)');
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({
       packageUrl: `http://${req.headers.host}/static/hotfix/en/`,
       remoteManifestUrl: `http://${req.headers.host}/static/hotfix/en/project.manifest`,
       remoteVersionUrl: `http://${req.headers.host}/static/hotfix/en/version.manifest`,
-      version: "1.0.0.3",
+      version: "1.0.0.11",
       engineVersion: "Cocos2d-JS v3.16"
     }));
   }
 
   if (pathname.includes('project.manifest')) {
-    console.log('>>> [Game Client] Yêu cầu project.manifest -> Trả về manifest 1.0.0.3');
+    console.log('>>> [Game Client] Yêu cầu project.manifest -> Trả về manifest 1.0.0.11');
     const manifestPath = path.join(__dirname, 'data', 'project.manifest');
     if (fs.existsSync(manifestPath)) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -193,7 +199,7 @@ async function handleRequest(req, res) {
       packageUrl: `http://${req.headers.host}/static/hotfix/en/`,
       remoteManifestUrl: `http://${req.headers.host}/static/hotfix/en/project.manifest`,
       remoteVersionUrl: `http://${req.headers.host}/static/hotfix/en/version.manifest`,
-      version: "1.0.0.3",
+      version: "1.0.0.11",
       assets: {},
       searchPaths: []
     }));

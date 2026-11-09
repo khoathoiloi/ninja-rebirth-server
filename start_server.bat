@@ -1,6 +1,7 @@
 @echo off
 title "Private Game Server - GM Admin Panel"
 cd /d "%~dp0"
+set "PATH=%LOCALAPPDATA%\Programs\nodejs;%PATH%"
 
 echo Dang giai phong cac cong mang (80, 8080, 9001)...
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":80 :8080 :9001"') do (
