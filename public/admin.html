@@ -584,6 +584,78 @@
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- MODAL: RECHARGE & VIP PACKAGE -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalRecharge" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-crown text-warning me-2"></i> Nạp Gói Nạp & Cấp VIP (Chuẩn Bản Gốc)</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="rechargeUid">
+          <div class="alert alert-secondary py-2 small mb-3">
+            <span class="text-white">Người chơi: <strong id="rechargeUserName" class="text-warning"></strong> (UID: <span id="rechargeUserUid"></span>)</span><br>
+            <span class="text-white">Cấp VIP hiện tại: <span id="rechargeUserVip" class="badge bg-warning text-dark">VIP 0</span> - VIP EXP: <span id="rechargeUserExp" class="text-info fw-bold">0</span></span>
+          </div>
+
+          <h6 class="small fw-bold text-warning mb-2"><i class="fa-solid fa-gem me-1"></i> 1. CHỌN GÓI NẠP CHUẨN NGUYÊN TÁC</h6>
+          <div class="mb-3">
+            <select id="rechargePackageSelect" class="form-select mb-2">
+              <option value="1">Gói 60 Kim Cương (+60 VIP EXP) - [20,000 VNĐ / $0.99] -> VIP 1</option>
+              <option value="2">Gói 300 Kim Cương (+300 VIP EXP) - [100,000 VNĐ / $4.99] -> VIP 2</option>
+              <option value="3">Gói 980 Kim Cương (+980 VIP EXP) - [300,000 VNĐ / $14.99] -> VIP 4</option>
+              <option value="4">Gói 1980 Kim Cương (+1,980 VIP EXP) - [600,000 VNĐ / $29.99] -> VIP 6</option>
+              <option value="5">Gói 3280 Kim Cương (+3,280 VIP EXP) - [1,000,000 VNĐ / $49.99] -> VIP 8</option>
+              <option value="6">Gói 6480 Kim Cương (+6,480 VIP EXP) - [2,000,000 VNĐ / $99.99] -> VIP 10</option>
+              <option value="7">Thẻ Tháng (Monthly Card) (+300 KC, +100 KC/ngày x30) -> VIP 2</option>
+              <option value="8">Quỹ Trưởng Thành (Growth Fund) (1000 KC -> hoàn 10,000 KC) -> VIP 4</option>
+            </select>
+            <button type="button" class="btn btn-warning btn-sm w-100 fw-bold" onclick="submitRechargePackage()">
+              <i class="fa-solid fa-cart-shopping me-1"></i> Nạp Gói Này Cho Người Chơi (Cộng KC & VIP Tự Động)
+            </button>
+          </div>
+
+          <hr class="border-secondary">
+
+          <h6 class="small fw-bold text-info mb-2"><i class="fa-solid fa-sliders me-1"></i> 2. ĐẶT TRỰC TIẾP CẤP ĐỘ VIP (0 - 15)</h6>
+          <div class="row g-2 align-items-center">
+            <div class="col-8">
+              <select id="setVipSelect" class="form-select form-select-sm">
+                <option value="0">VIP 0 (0 EXP)</option>
+                <option value="1">VIP 1 (60 EXP)</option>
+                <option value="2">VIP 2 (300 EXP)</option>
+                <option value="3">VIP 3 (600 EXP)</option>
+                <option value="4">VIP 4 (1,000 EXP)</option>
+                <option value="5">VIP 5 (2,000 EXP)</option>
+                <option value="6">VIP 6 (4,000 EXP)</option>
+                <option value="7">VIP 7 (7,000 EXP)</option>
+                <option value="8">VIP 8 (10,000 EXP)</option>
+                <option value="9">VIP 9 (15,000 EXP)</option>
+                <option value="10">VIP 10 (20,000 EXP)</option>
+                <option value="11">VIP 11 (30,000 EXP)</option>
+                <option value="12">VIP 12 (50,000 EXP)</option>
+                <option value="13">VIP 13 (80,000 EXP)</option>
+                <option value="14">VIP 14 (120,000 EXP)</option>
+                <option value="15">VIP 15 (200,000 EXP - Cấp Tối Thượng)</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-info btn-sm w-100 fw-bold" onclick="submitSetVipLevel()">
+                Đặt Cấp VIP
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script>
     let globalData = { users: [], servers: [], giftcodes: [], catalogs: { items: [], heroes: [] }, stats: {} };
@@ -696,6 +768,9 @@
             </td>
             <td class="text-center">
               <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-warning" title="Nạp Gói & Cấp VIP" onclick="openRechargeModal('${u.uid}')">
+                  <i class="fa-solid fa-crown"></i>
+                </button>
                 <button class="btn btn-outline-info" title="Sửa Chỉ Số" onclick="openEditUser('${u.uid}')">
                   <i class="fa-solid fa-pen"></i>
                 </button>
@@ -787,6 +862,58 @@
     // ACTIONS & MODALS
     // ==========================================
 
+    function openRechargeModal(uid) {
+      const u = globalData.users.find(x => String(x.uid) === String(uid));
+      if (!u) return;
+      const pd = u.player_data || {};
+      document.getElementById('rechargeUid').value = u.uid;
+      document.getElementById('rechargeUserName').innerText = u.username;
+      document.getElementById('rechargeUserUid').innerText = u.uid;
+      document.getElementById('rechargeUserVip').innerText = `VIP ${pd.vip !== undefined ? pd.vip : (u.vip || 0)}`;
+      document.getElementById('rechargeUserExp').innerText = fmt(pd.vip_exp || 0);
+      document.getElementById('setVipSelect').value = String(pd.vip !== undefined ? pd.vip : (u.vip || 0));
+
+      new bootstrap.Modal(document.getElementById('modalRecharge')).show();
+    }
+
+    async function submitRechargePackage() {
+      const uid = document.getElementById('rechargeUid').value;
+      const packageId = document.getElementById('rechargePackageSelect').value;
+
+      const res = await fetch('/api/user/recharge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, packageId })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`Nạp thành công gói [${data.pkg.name}]! Đã cộng +${data.pkg.diamond} Kim Cương và +${data.pkg.vip_exp} VIP EXP (Đạt VIP ${data.user.vip})`);
+        bootstrap.Modal.getInstance(document.getElementById('modalRecharge')).hide();
+        loadData();
+      } else {
+        alert('Lỗi nạp: ' + (data.error || 'Thao tác thất bại'));
+      }
+    }
+
+    async function submitSetVipLevel() {
+      const uid = document.getElementById('rechargeUid').value;
+      const vipLevel = document.getElementById('setVipSelect').value;
+
+      const res = await fetch('/api/user/set-vip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid, vipLevel })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`Đã cập nhật cấp VIP ${vipLevel} cho người chơi!`);
+        bootstrap.Modal.getInstance(document.getElementById('modalRecharge')).hide();
+        loadData();
+      } else {
+        alert('Lỗi đặt VIP: ' + (data.error || 'Thao tác thất bại'));
+      }
+    }
+
     function openEditUser(uid) {
       const u = globalData.users.find(x => String(x.uid) === String(uid));
       if (!u) return;
@@ -825,7 +952,7 @@
 
     function openAddItem(uid) {
       document.getElementById('addItemUid').value = uid;
-      document.getElementById('addItemId').value = '40010';
+      document.getElementById('addItemId').value = '1004';
       document.getElementById('addItemCount').value = '100';
       new bootstrap.Modal(document.getElementById('modalAddItem')).show();
     }
@@ -850,7 +977,7 @@
 
     function openAddHero(uid) {
       document.getElementById('addHeroUid').value = uid;
-      document.getElementById('addHeroId').value = '10200';
+      document.getElementById('addHeroId').value = '10020';
       document.getElementById('addHeroLv').value = '100';
       document.getElementById('addHeroStar').value = '5';
       new bootstrap.Modal(document.getElementById('modalAddHero')).show();

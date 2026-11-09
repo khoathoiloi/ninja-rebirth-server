@@ -45,6 +45,21 @@ const WS_PORT = 9001;
 const DB_FILE = path.join(__dirname, 'data', 'db.json');
 const CATALOG_FILE = path.join(__dirname, 'data', 'catalogs.json');
 
+// Authentic VIP EXP Table (VIP 0 to VIP 15)
+const VIP_EXP_TABLE = [0, 60, 300, 600, 1000, 2000, 4000, 7000, 10000, 15000, 20000, 30000, 50000, 80000, 120000, 200000];
+
+function calculateVipLevel(vipExp) {
+  let lv = 0;
+  for (let i = 0; i < VIP_EXP_TABLE.length; i++) {
+    if ((vipExp || 0) >= VIP_EXP_TABLE[i]) {
+      lv = i;
+    } else {
+      break;
+    }
+  }
+  return lv;
+}
+
 // --- Helper: Catalogs ---
 function getCatalogs() {
   try {
@@ -52,7 +67,7 @@ function getCatalogs() {
       return JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
     }
   } catch (e) {}
-  return { items: [], heroes: [] };
+  return { items: [], heroes: [], recharge_packages: [], vip_levels: [] };
 }
 
 // --- Helper: Read / Write Database ---
@@ -82,30 +97,41 @@ function initPlayerData(user) {
   const pd = user.player_data;
   pd.team_name = pd.team_name || user.nickname || user.username || `Ninja_${user.uid}`;
   pd.level = pd.level || user.level || 100;
-  pd.vip = pd.vip !== undefined ? pd.vip : (user.vip !== undefined ? user.vip : 15);
+  pd.vip_exp = pd.vip_exp !== undefined ? pd.vip_exp : 200000;
+  pd.vip = pd.vip !== undefined ? pd.vip : (user.vip !== undefined ? user.vip : calculateVipLevel(pd.vip_exp));
   pd.gold = pd.gold !== undefined ? pd.gold : (user.gold !== undefined ? user.gold : 99999999);
   pd.stone = pd.stone !== undefined ? pd.stone : (user.diamond !== undefined ? user.diamond : 99999999);
   pd.sp = pd.sp !== undefined ? pd.sp : 300;
   pd.arena_point = pd.arena_point || 999999;
   pd.used_codes = pd.used_codes || [];
 
+  // Authentic canonical items (No fake items)
   if (!pd.items || Object.keys(pd.items).length === 0) {
     pd.items = {
-      "40010": { id: 40010, count: 9999 },
-      "10010": { id: 10010, count: 9999 },
-      "10020": { id: 10020, count: 9999 },
-      "10030": { id: 10030, count: 9999 },
-      "10040": { id: 10040, count: 9999 },
-      "10050": { id: 10050, count: 9999 },
-      "10100": { id: 10100, count: 9999 },
-      "20010": { id: 20010, count: 9999 },
-      "30010": { id: 30010, count: 9999 }
+      "1001": { id: 1001, count: 999 }, // EXP Tiểu
+      "1002": { id: 1002, count: 999 }, // EXP Trung
+      "1003": { id: 1003, count: 999 }, // EXP Đại
+      "1004": { id: 1004, count: 999 }, // EXP Siêu Cấp
+      "1005": { id: 1005, count: 999 }, // Mì Ramen Ichiraku (+50 SP)
+      "1006": { id: 1006, count: 999 }, // Bánh Bao Thịt (+100 SP)
+      "1007": { id: 1007, count: 999 }, // Túi Bạc Vàng
+      "1008": { id: 1008, count: 999 }, // Rương Vàng
+      "1012": { id: 1012, count: 999 }, // Đá Thức Tỉnh Awaken
+      // Mảnh tướng starter
+      "10010": { id: 10010, count: 999 },
+      "10020": { id: 10020, count: 999 },
+      "10030": { id: 10030, count: 999 },
+      "10040": { id: 10040, count: 999 },
+      "10050": { id: 10050, count: 999 },
+      "10070": { id: 10070, count: 999 },
+      "10250": { id: 10250, count: 999 }
     };
   }
 
+  // Canonical Starter Heroes: 10020 (Naruto), 10070 (Sasuke), 10250 (Sakura), 10040 (Kakashi), 10010 (Naruto Cửu Vĩ), 10050 (Gaara)
   if (!pd.heros || Object.keys(pd.heros).length === 0) {
     pd.heros = {};
-    const heroIds = [10010, 10020, 10030, 10040, 10050, 10100];
+    const heroIds = [10020, 10070, 10250, 10040, 10010, 10050];
     heroIds.forEach(id => {
       pd.heros[id] = {
         id: id,
@@ -331,23 +357,30 @@ async function handleRequest(req, res) {
         team_name: nickname || `Ninja_${uid}`,
         level: 50,
         vip: 5,
+        vip_exp: VIP_EXP_TABLE[5] || 2000,
         gold: 5000000,
         stone: 20000,
         sp: 300,
         arena_point: 5000,
         items: {
-          "40010": { id: 40010, count: 100 },
+          "1001": { id: 1001, count: 100 },
+          "1002": { id: 1002, count: 50 },
+          "1004": { id: 1004, count: 20 },
+          "1005": { id: 1005, count: 20 },
+          "1007": { id: 1007, count: 20 },
+          "1012": { id: 1012, count: 50 },
           "10010": { id: 10010, count: 80 },
           "10020": { id: 10020, count: 80 },
-          "10030": { id: 10030, count: 80 },
-          "20010": { id: 20010, count: 50 },
-          "30010": { id: 30010, count: 20 }
+          "10070": { id: 10070, count: 80 },
+          "10250": { id: 10250, count: 80 },
+          "10040": { id: 10040, count: 80 }
         },
         heros: {
-          "10010": { id: 10010, hero_id: 10010, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 },
-          "10020": { id: 10020, hero_id: 10020, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 },
-          "10030": { id: 10030, hero_id: 10030, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 },
-          "10040": { id: 10040, hero_id: 10040, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 }
+          "10020": { id: 10020, hero_id: 10020, lv: 50, exp: 0, quality: 1, star: 3, status: 0, has_awake: 1 },
+          "10070": { id: 10070, hero_id: 10070, lv: 50, exp: 0, quality: 1, star: 3, status: 0, has_awake: 1 },
+          "10250": { id: 10250, hero_id: 10250, lv: 50, exp: 0, quality: 1, star: 3, status: 0, has_awake: 1 },
+          "10040": { id: 10040, hero_id: 10040, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 },
+          "10010": { id: 10010, hero_id: 10010, lv: 50, exp: 0, quality: 1, star: 4, status: 0, has_awake: 1 }
         },
         used_codes: []
       }
@@ -499,6 +532,60 @@ async function handleRequest(req, res) {
     }
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: true }));
+  }
+
+  // Admin API: Recharge Package for User (Authentic Tiers)
+  if (pathname === '/api/user/recharge' && req.method === 'POST') {
+    const body = await parseBody(req);
+    const db = getDb();
+    const user = db.users.find(u => String(u.uid) === String(body.uid));
+    if (!user) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: false, error: 'Không tìm thấy người dùng!' }));
+    }
+    initPlayerData(user);
+    const catalogs = getCatalogs();
+    const pkg = (catalogs.recharge_packages || []).find(p => p.id === parseInt(body.packageId));
+    if (!pkg) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: false, error: 'Gói nạp không hợp lệ!' }));
+    }
+
+    user.player_data.stone = (user.player_data.stone || 0) + pkg.diamond;
+    user.diamond = user.player_data.stone;
+    user.player_data.vip_exp = (user.player_data.vip_exp || 0) + pkg.vip_exp;
+    user.player_data.vip = calculateVipLevel(user.player_data.vip_exp);
+    user.vip = user.player_data.vip;
+    saveDb(db);
+
+    console.log(`>>> [GM Nạp Gói] Đã nạp ${pkg.name} (+${pkg.diamond} KC, +${pkg.vip_exp} VIP EXP) cho ${user.username} (UID: ${user.uid}) -> Đạt VIP ${user.vip}`);
+    broadcastUserUpdate(user.uid, 'player');
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: true, user, pkg }));
+  }
+
+  // Admin API: Set VIP Level directly (0 - 15)
+  if (pathname === '/api/user/set-vip' && req.method === 'POST') {
+    const body = await parseBody(req);
+    const db = getDb();
+    const user = db.users.find(u => String(u.uid) === String(body.uid));
+    if (!user) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: false, error: 'Không tìm thấy người dùng!' }));
+    }
+    initPlayerData(user);
+    const targetVip = Math.min(15, Math.max(0, parseInt(body.vipLevel) || 0));
+    user.player_data.vip = targetVip;
+    user.vip = targetVip;
+    user.player_data.vip_exp = VIP_EXP_TABLE[targetVip] || 0;
+    saveDb(db);
+
+    console.log(`>>> [GM Set VIP] Đặt VIP ${targetVip} cho ${user.username} (UID: ${user.uid})`);
+    broadcastUserUpdate(user.uid, 'player');
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: true, user }));
   }
 
   // Admin API: Toggle Ban User
@@ -912,6 +999,12 @@ wss.on('connection', (ws, req) => {
           },
           error: 0
         });
+
+        // Tự động đẩy PlayerInfo ngay sau khi Login để Client gỡ bỏ popup "Đang load...." và chuyển vào giao diện chính
+        setTimeout(() => {
+          console.log(`>>> [WebSocket] Tự động đẩy PlayerInfo sau Login cho ${user.username}...`);
+          pushPlayerInfo(ws, user);
+        }, 50);
       } else if (cmd === 'GetLastGuide') {
         sendWsPacket(ws, {
           func_name: 'GetLastGuide',
@@ -1585,11 +1678,97 @@ wss.on('connection', (ws, req) => {
           data: { time: Math.floor(Date.now() / 1000), offset: 28800 },
           error: 0
         });
+        // Dự phòng an toàn: nếu client đang chờ PlayerInfo ở nhịp đầu tiên, đẩy luôn
+        if (user && !ws._initialPlayerInfoPushed) {
+          ws._initialPlayerInfoPushed = true;
+          setTimeout(() => {
+            pushPlayerInfo(ws, user);
+          }, 50);
+        }
       } else if (cmd === 'ServerInfo') {
         sendWsPacket(ws, {
           func_name: 'ServerInfo',
           data: {
             server_time: Math.floor(Date.now() / 1000)
+          },
+          error: 0
+        });
+      } else if (cmd === 'ConfigGoods' || cmd === 'GoodsInfo') {
+        console.log(`>>> [WebSocket] Gửi danh sách gói nạp chuẩn ConfigGoods/GoodsInfo cho ${user.username}...`);
+        const catalogs = getCatalogs();
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {
+            goods: catalogs.recharge_packages || [],
+            vip_levels: catalogs.vip_levels || [],
+            first_recharge: { status: 1 }
+          },
+          error: 0
+        });
+      } else if (cmd === 'CreateOrder') {
+        const goodsId = params[0] || 1;
+        const orderId = `ORDER_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+        console.log(`>>> [WebSocket] Khởi tạo đơn nạp CreateOrder (GoodsId: ${goodsId}) -> OrderId: ${orderId}`);
+        sendWsPacket(ws, {
+          func_name: 'CreateOrder',
+          data: {
+            order_id: orderId,
+            goods_id: goodsId,
+            status: 1
+          },
+          error: 0
+        });
+      } else if (cmd === 'GMBuyRMBGoods') {
+        const goodsId = parseInt(params[0] || 1);
+        const catalogs = getCatalogs();
+        const pkg = (catalogs.recharge_packages || []).find(p => p.id === goodsId) || { id: goodsId, diamond: 60, vip_exp: 60, name: `Gói ${goodsId}` };
+        
+        user.player_data.stone = (user.player_data.stone || 0) + pkg.diamond;
+        user.diamond = user.player_data.stone;
+        user.player_data.vip_exp = (user.player_data.vip_exp || 0) + pkg.vip_exp;
+        user.player_data.vip = calculateVipLevel(user.player_data.vip_exp);
+        user.vip = user.player_data.vip;
+        saveDb(getDb());
+
+        console.log(`>>> [WebSocket] Nạp thành công gói: ${pkg.name} (+${pkg.diamond} KC, +${pkg.vip_exp} VIP EXP) -> VIP ${user.vip}`);
+        sendWsPacket(ws, {
+          func_name: 'GMBuyRMBGoods',
+          data: {
+            success: 1,
+            goods_id: goodsId,
+            diamond: user.diamond,
+            vip_lv: user.vip,
+            vip_exp: user.player_data.vip_exp
+          },
+          error: 0
+        });
+        setTimeout(() => {
+          pushPlayerInfo(ws, user);
+        }, 100);
+      } else if (cmd === 'ReceiveFirstRecharge') {
+        sendWsPacket(ws, {
+          func_name: 'ReceiveFirstRecharge',
+          data: {
+            success: 1,
+            items: [
+              { id: 10010, count: 50 },
+              { id: 1004, count: 50 },
+              { id: 1007, count: 20 }
+            ]
+          },
+          error: 0
+        });
+      } else if (cmd === 'ReceiveVipGiftBag') {
+        const targetVip = params[0] || 0;
+        sendWsPacket(ws, {
+          func_name: 'ReceiveVipGiftBag',
+          data: {
+            success: 1,
+            vip_lv: targetVip,
+            items: [
+              { id: 1004, count: 20 * (targetVip + 1) },
+              { id: 1008, count: 10 * (targetVip + 1) }
+            ]
           },
           error: 0
         });
