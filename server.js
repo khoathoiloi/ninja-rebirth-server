@@ -467,7 +467,14 @@ wss.on('connection', (ws, req) => {
         sendWsPacket(ws, {
           func_name: 'BagInfo',
           data: {
-            items: {},
+            items: {
+              "40010": { id: 40010, count: 9999 },
+              "10010": { id: 10010, count: 9999 },
+              "10020": { id: 10020, count: 9999 },
+              "10030": { id: 10030, count: 9999 },
+              "20010": { id: 20010, count: 9999 },
+              "30010": { id: 30010, count: 9999 }
+            },
             equip: {}
           },
           error: 0
@@ -482,20 +489,45 @@ wss.on('connection', (ws, req) => {
           error: 0
         });
       } else if (cmd === 'ChapterInfo') {
-        console.log(`>>> [WebSocket] Gửi thông tin ChapterInfo...`);
+        console.log(`>>> [WebSocket] Gửi thông tin ChapterInfo (Mở khóa Ải thường & Tinh anh)...`);
+        const ch1 = [];
+        const ch2 = [];
+        for (let s = 50001; s <= 50050; s++) {
+          ch1.push({ chapter_id: s, star: 3 });
+        }
+        for (let s = 51001; s <= 51050; s++) {
+          ch2.push({ chapter_id: s, star: 3 });
+        }
         sendWsPacket(ws, {
           func_name: 'ChapterInfo',
           data: {
-            chapters: {} // Empty object để an toàn, không chứa "1": [] gây lỗi [0].chapter_id
+            chapters: {
+              "1": ch1,
+              "2": ch2
+            }
           },
           error: 0
         });
       } else if (cmd === 'GetHeros') {
-        console.log(`>>> [WebSocket] Gửi thông tin GetHeros...`);
+        console.log(`>>> [WebSocket] Gửi thông tin GetHeros (Cấp đội hình Naruto, Sasuke, Sakura, Kakashi, Gaara, Itachi)...`);
+        const heroIds = [10010, 10020, 10030, 10040, 10050, 10100];
+        const heros = {};
+        heroIds.forEach(id => {
+          heros[id] = {
+            id: id,
+            hero_id: id,
+            lv: 100,
+            exp: 0,
+            quality: 1,
+            star: 5,
+            status: 0,
+            has_awake: 1
+          };
+        });
         sendWsPacket(ws, {
           func_name: 'GetHeros',
           data: {
-            heros: {}
+            heros: heros
           },
           error: 0
         });
@@ -505,6 +537,111 @@ wss.on('connection', (ws, req) => {
           func_name: 'BeastInfo',
           data: {
             Beasts: {}
+          },
+          error: 0
+        });
+      } else if (cmd === 'SpInfo') {
+        sendWsPacket(ws, {
+          func_name: 'SpInfo',
+          data: {
+            sp: 200,
+            spTime: Math.floor(Date.now() / 1000)
+          },
+          error: 0
+        });
+      } else if (cmd === 'ChapterCountInfo') {
+        sendWsPacket(ws, {
+          func_name: 'ChapterCountInfo',
+          data: {
+            todayCount: 0,
+            resetCount: 0
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetChapterPerDayCountMulti') {
+        sendWsPacket(ws, {
+          func_name: 'GetChapterPerDayCountMulti',
+          data: {
+            multi: 1
+          },
+          error: 0
+        });
+      } else if (cmd === 'HasSepcialChapterOpenInEvent') {
+        sendWsPacket(ws, {
+          func_name: 'HasSepcialChapterOpenInEvent',
+          data: {
+            open: 1
+          },
+          error: 0
+        });
+      } else if (cmd === 'DailyInfo') {
+        sendWsPacket(ws, {
+          func_name: 'DailyInfo',
+          data: {
+            daily: {}
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetLvRewardInfo') {
+        sendWsPacket(ws, {
+          func_name: 'GetLvRewardInfo',
+          data: {
+            list: []
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetAllEvents' || cmd === 'GetAllEventsProcess') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {
+            events: [],
+            process: []
+          },
+          error: 0
+        });
+      } else if (cmd === 'MessageInfo') {
+        sendWsPacket(ws, {
+          func_name: 'MessageInfo',
+          data: {
+            messages: []
+          },
+          error: 0
+        });
+      } else if (cmd === 'DailyGet') {
+        sendWsPacket(ws, {
+          func_name: 'DailyGet',
+          data: {
+            status: 1
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetGroupHires') {
+        sendWsPacket(ws, {
+          func_name: 'GetGroupHires',
+          data: {
+            hires: []
+          },
+          error: 0
+        });
+      } else if (cmd.startsWith('Before') && cmd.includes('Fight')) {
+        console.log(`>>> [WebSocket] Cho phép bắt đầu trận đánh (${cmd})`);
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {
+            sign: 'battle_sign_' + Date.now(),
+            items: []
+          },
+          error: 0
+        });
+      } else if (cmd.startsWith('After') && cmd.includes('Fight')) {
+        console.log(`>>> [WebSocket] Kết thúc trận đánh (${cmd}) -> Thắng!`);
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {
+            star: 3,
+            exp: 1000,
+            gold: 50000,
+            items: []
           },
           error: 0
         });
