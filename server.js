@@ -362,13 +362,18 @@ function sendWsPacket(ws, obj) {
   try {
     const jsonStr = typeof obj === 'string' ? obj : JSON.stringify(obj);
     const jsonLen = Buffer.byteLength(jsonStr, 'utf8');
-    const p1 = (jsonLen >> 24) & 0xFF;
-    const p2 = (jsonLen >> 16) & 0xFF;
-    const p3 = (jsonLen >> 8) & 0xFF;
-    const p4 = jsonLen & 0xFF;
+    // Quan trọng: Client Cocos Netty tính alllen = 4 byte header + độ dài chuỗi json,
+    // sau đó gọi buff.substring(4, alllen). Do đó alllen bắt buộc phải là jsonLen + 4!
+    const alllen = jsonLen + 4;
+    const p1 = (alllen >> 24) & 0xFF;
+    const p2 = (alllen >> 16) & 0xFF;
+    const p3 = (alllen >> 8) & 0xFF;
+    const p4 = alllen & 0xFF;
     const header = String.fromCharCode(p1, p2, p3, p4);
     // Crucial: Must be sent as a TEXT frame (String), NOT a Buffer!
-    ws.send(header + jsonStr);
+    if (ws.readyState === ws.OPEN) {
+      ws.send(header + jsonStr);
+    }
   } catch (e) {
     console.error('[WebSocket] Lỗi gửi gói tin:', e.message);
   }
