@@ -83,8 +83,8 @@ function initPlayerData(user) {
   pd.team_name = pd.team_name || user.nickname || user.username || `Ninja_${user.uid}`;
   pd.level = pd.level || user.level || 100;
   pd.vip = pd.vip !== undefined ? pd.vip : (user.vip !== undefined ? user.vip : 15);
-  pd.gold = pd.gold || user.gold || 99999999;
-  pd.stone = pd.stone || user.diamond || 99999999;
+  pd.gold = pd.gold !== undefined ? pd.gold : (user.gold !== undefined ? user.gold : 99999999);
+  pd.stone = pd.stone !== undefined ? pd.stone : (user.diamond !== undefined ? user.diamond : 99999999);
   pd.sp = pd.sp !== undefined ? pd.sp : 300;
   pd.arena_point = pd.arena_point || 999999;
   pd.used_codes = pd.used_codes || [];
@@ -123,7 +123,7 @@ function initPlayerData(user) {
   return user;
 }
 
-// Active WebSocket connections: Map(ws => { uid, user })
+// Active WebSocket connections: Map(ws => user)
 const activeSockets = new Map();
 
 // Push packet to active connection
@@ -160,10 +160,10 @@ function pushPlayerInfo(ws, user) {
         team_exp: 0,
         vip_lv: pd.vip !== undefined ? pd.vip : 15,
         vip_exp: 0,
-        gold: pd.gold || 0,
-        stone: pd.stone || 0,
+        gold: pd.gold !== undefined ? pd.gold : 99999999,
+        stone: pd.stone !== undefined ? pd.stone : 99999999,
         sp: pd.sp !== undefined ? pd.sp : 300,
-        arena_point: pd.arena_point || 0
+        arena_point: pd.arena_point || 999999
       }
     },
     error: 0
@@ -857,6 +857,7 @@ wss.on('connection', (ws, req) => {
     try {
       const pkg = JSON.parse(msgStr);
       const cmd = pkg.func_name;
+      const params = pkg.params || [];
 
       // Helper: get current user for this socket
       let user = activeSockets.get(ws);
@@ -877,8 +878,11 @@ wss.on('connection', (ws, req) => {
 
       const pd = user.player_data || {};
 
+      // ==========================================
+      // COMMAND DISPATCHER
+      // ==========================================
+
       if (cmd === 'Login') {
-        const params = pkg.params || [];
         const requestedUid = String(params[0] || '10001');
         const roleId = params[2] || parseInt(requestedUid);
         
@@ -902,8 +906,8 @@ wss.on('connection', (ws, req) => {
             team_name: currentPd.team_name || user.username,
             team_lv: currentPd.level || 100,
             vip_lv: currentPd.vip !== undefined ? currentPd.vip : 15,
-            gold: currentPd.gold || 99999999,
-            diamond: currentPd.stone || 99999999,
+            gold: currentPd.gold !== undefined ? currentPd.gold : 99999999,
+            diamond: currentPd.stone !== undefined ? currentPd.stone : 99999999,
             power: 999999
           },
           error: 0
@@ -911,25 +915,19 @@ wss.on('connection', (ws, req) => {
       } else if (cmd === 'GetLastGuide') {
         sendWsPacket(ws, {
           func_name: 'GetLastGuide',
-          data: {
-            lastGuideId: 100
-          },
+          data: { lastGuideId: 100 },
           error: 0
         });
       } else if (cmd === 'Get') {
         sendWsPacket(ws, {
           func_name: 'Get',
-          data: {
-            value: 1
-          },
+          data: { value: 1 },
           error: 0
         });
       } else if (cmd === 'SetLastGuide' || cmd === 'Set') {
         sendWsPacket(ws, {
           func_name: cmd,
-          data: {
-            success: 1
-          },
+          data: { success: 1 },
           error: 0
         });
       } else if (cmd === 'PlayerInfo') {
@@ -938,12 +936,10 @@ wss.on('connection', (ws, req) => {
       } else if (cmd === 'BagInfo') {
         console.log(`>>> [WebSocket] Gửi thông tin BagInfo cho ${user.username} (UID: ${user.uid})...`);
         pushBagInfo(ws, user);
-      } else if (cmd === 'GetSecrets') {
+      } else if (cmd === 'GetSecrets' || cmd === 'Secret') {
         sendWsPacket(ws, {
-          func_name: 'GetSecrets',
-          data: {
-            secrets: []
-          },
+          func_name: cmd,
+          data: { secrets: [] },
           error: 0
         });
       } else if (cmd === 'ChapterInfo') {
@@ -959,10 +955,7 @@ wss.on('connection', (ws, req) => {
         sendWsPacket(ws, {
           func_name: 'ChapterInfo',
           data: {
-            chapters: {
-              "1": ch1,
-              "2": ch2
-            }
+            chapters: { "1": ch1, "2": ch2 }
           },
           error: 0
         });
@@ -972,9 +965,7 @@ wss.on('connection', (ws, req) => {
       } else if (cmd === 'BeastInfo') {
         sendWsPacket(ws, {
           func_name: 'BeastInfo',
-          data: {
-            Beasts: {}
-          },
+          data: { Beasts: {} },
           error: 0
         });
       } else if (cmd === 'SpInfo') {
@@ -989,79 +980,577 @@ wss.on('connection', (ws, req) => {
       } else if (cmd === 'ChapterCountInfo') {
         sendWsPacket(ws, {
           func_name: 'ChapterCountInfo',
-          data: {
-            todayCount: 0,
-            resetCount: 0
-          },
+          data: { todayCount: 0, resetCount: 0 },
           error: 0
         });
       } else if (cmd === 'GetChapterPerDayCountMulti') {
         sendWsPacket(ws, {
           func_name: 'GetChapterPerDayCountMulti',
-          data: {
-            multi: 1
-          },
+          data: { multi: 1 },
           error: 0
         });
       } else if (cmd === 'HasSepcialChapterOpenInEvent') {
         sendWsPacket(ws, {
           func_name: 'HasSepcialChapterOpenInEvent',
-          data: {
-            open: 1
-          },
+          data: { open: 1 },
           error: 0
         });
       } else if (cmd === 'DailyInfo') {
+        // MUST PROVIDE dailyCount AND daily to prevent DropMenu / MissionMain freeze!
         sendWsPacket(ws, {
           func_name: 'DailyInfo',
           data: {
-            daily: {}
+            daily: {},
+            dailyCount: {}
           },
+          error: 0
+        });
+      } else if (cmd === 'DailyGet') {
+        // MUST ECHO params[0] as key so PkView and Daily check callbacks trigger!
+        const requestKey = params[0] || 'DAILY_DEFAULT_KEY';
+        sendWsPacket(ws, {
+          func_name: 'DailyGet',
+          data: {
+            key: requestKey,
+            value: 0
+          },
+          error: 0
+        });
+      } else if (cmd === 'SignInInfo') {
+        // Điểm Danh Tân Thủ
+        sendWsPacket(ws, {
+          func_name: 'SignInInfo',
+          data: {
+            days: [{ day: new Date().getDate() }]
+          },
+          error: 0
+        });
+      } else if (cmd === 'SignIn') {
+        sendWsPacket(ws, {
+          func_name: 'SignIn',
+          data: {
+            day: new Date().getDate(),
+            items: [
+              { type: 3, amount: 100000 },
+              { type: 4, amount: 500 }
+            ]
+          },
+          error: 0
+        });
+      } else if (cmd === 'ShopInfo') {
+        // Cửa hàng Ninja Shop
+        const shopObj = {
+          "1001": { id: 1001, item_id: 40010, count: 20, price: 50000, cost_type: 3, buy: 0 },
+          "1002": { id: 1002, item_id: 20010, count: 10, price: 20000, cost_type: 3, buy: 0 },
+          "1003": { id: 1003, item_id: 30010, count: 5, price: 100, cost_type: 4, buy: 0 },
+          "1004": { id: 1004, item_id: 10010, count: 10, price: 200, cost_type: 4, buy: 0 }
+        };
+        sendWsPacket(ws, {
+          func_name: 'ShopInfo',
+          data: {
+            playerShop: {
+              info: JSON.stringify(shopObj),
+              discount_info: ""
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'BuyShopGoods' || cmd === 'BuySoulShopItem') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1, items: [] },
+          error: 0
+        });
+      } else if (cmd === 'GetSoulShopInfo') {
+        sendWsPacket(ws, {
+          func_name: 'GetSoulShopInfo',
+          data: {
+            soulShop: { info: "{}", discount_info: "" }
+          },
+          error: 0
+        });
+      } else if (cmd === 'ArenaInfo') {
+        // Đấu trường PkView
+        sendWsPacket(ws, {
+          func_name: 'ArenaInfo',
+          data: {
+            rank: {
+              rank: 1,
+              icon: 10010,
+              win_count: 0,
+              player_lv: pd.level || 100,
+              player_name: pd.team_name || user.username,
+              player_id: parseInt(user.uid),
+              fighter_id: parseInt(user.uid),
+              fight_value: 999999,
+              server_id: 1,
+              atk_heros: [{ id: 10010, lv: pd.level || 100, star: 5, quality: 1 }],
+              def_heros: [{ id: 10010, lv: pd.level || 100, star: 5, quality: 1 }]
+            },
+            lastFightTime: 0,
+            fightCount: 0
+          },
+          error: 0
+        });
+      } else if (cmd === 'MatchFighters') {
+        sendWsPacket(ws, {
+          func_name: 'MatchFighters',
+          data: {
+            "2": {
+              rank: 2, icon: 10020, win_count: 10, player_lv: 95,
+              player_name: "Sasuke Uchiha", player_id: 10002, fighter_id: 10002,
+              fight_value: 850000, server_id: 1,
+              atk_heros: [{ id: 10020, lv: 95, star: 5, quality: 1 }],
+              def_heros: [{ id: 10020, lv: 95, star: 5, quality: 1 }]
+            },
+            "3": {
+              rank: 3, icon: 10040, win_count: 8, player_lv: 90,
+              player_name: "Kakashi Hatake", player_id: 10003, fighter_id: 10003,
+              fight_value: 800000, server_id: 1,
+              atk_heros: [{ id: 10040, lv: 90, star: 5, quality: 1 }],
+              def_heros: [{ id: 10040, lv: 90, star: 5, quality: 1 }]
+            },
+            "4": {
+              rank: 4, icon: 10100, win_count: 12, player_lv: 92,
+              player_name: "Itachi Uchiha", player_id: 10004, fighter_id: 10004,
+              fight_value: 820000, server_id: 1,
+              atk_heros: [{ id: 10100, lv: 92, star: 5, quality: 1 }],
+              def_heros: [{ id: 10100, lv: 92, star: 5, quality: 1 }]
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'PlayerArenaInfo') {
+        sendWsPacket(ws, {
+          func_name: 'PlayerArenaInfo',
+          data: {
+            rank: {
+              rank: 1, icon: 10010, player_lv: pd.level || 100,
+              player_name: pd.team_name || user.username, player_id: parseInt(user.uid),
+              fight_value: 999999
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'ArenaRank') {
+        sendWsPacket(ws, {
+          func_name: 'ArenaRank',
+          data: {
+            ranks: [
+              { rank: 1, player_name: pd.team_name || user.username, player_lv: pd.level || 100, fight_value: 999999, icon: 10010 },
+              { rank: 2, player_name: "Sasuke Uchiha", player_lv: 95, fight_value: 850000, icon: 10020 },
+              { rank: 3, player_name: "Kakashi Hatake", player_lv: 90, fight_value: 800000, icon: 10040 }
+            ]
+          },
+          error: 0
+        });
+      } else if (cmd === 'SetArenaLineup' || cmd === 'SetDarkArenaLineup' || cmd === 'SetGroupFightLineup' || cmd === 'SetGroupFightLineupEx') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
+          error: 0
+        });
+      } else if (cmd === 'ClearArenaFightCD' || cmd === 'ClearDarkArenaFightCD') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
+          error: 0
+        });
+      } else if (cmd === 'ArenaFight' || cmd === 'DarkArenaFight') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { sign: 'fight_' + Date.now(), star: 3 },
+          error: 0
+        });
+      } else if (cmd === 'DarkArenaInfo') {
+        sendWsPacket(ws, {
+          func_name: 'DarkArenaInfo',
+          data: {
+            rank: {
+              rank: 1, player_id: parseInt(user.uid), team_name: pd.team_name || user.username,
+              player_lv: pd.level || 100, power: 999999, atk_heros: [], def_heros: []
+            },
+            lastFightTime: 0,
+            fightCount: 0
+          },
+          error: 0
+        });
+      } else if (cmd === 'MatcDarkhFighters') {
+        sendWsPacket(ws, {
+          func_name: 'MatcDarkhFighters',
+          data: {},
+          error: 0
+        });
+      } else if (cmd === 'DarkArenaRank') {
+        sendWsPacket(ws, {
+          func_name: 'DarkArenaRank',
+          data: { ranks: [] },
+          error: 0
+        });
+      } else if (cmd === 'CrossArenaInfo' || cmd === 'CrossDarkArenaInfo') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {
+            rank: {
+              rank: 1, player_id: parseInt(user.uid), team_name: pd.team_name || user.username,
+              player_lv: pd.level || 100, power: 999999, atk_heros: [], def_heros: []
+            },
+            lastFightTime: 0,
+            fightCount: 0
+          },
+          error: 0
+        });
+      } else if (cmd === 'CrossMatchArenaFighters' || cmd === 'CrossMatcDarkhFighters') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: {},
+          error: 0
+        });
+      } else if (cmd === 'CrossArenaRank' || cmd === 'CrossDarkArenaRank') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { ranks: [] },
+          error: 0
+        });
+      } else if (cmd === 'PlayerTowerInfo') {
+        // Tháp Lãng Quên / Lost Tower
+        sendWsPacket(ws, {
+          func_name: 'PlayerTowerInfo',
+          data: {
+            tower: { cur_layer: 1, max_layer: 100, reset_count: 0 },
+            layer: { layer: 1, has_pass: 0, box_1_id: 1, box_2_id: 1, box_3_id: 1 }
+          },
+          error: 0
+        });
+      } else if (cmd === 'GetTowerLayer') {
+        const layerIdx = params[0] || 1;
+        sendWsPacket(ws, {
+          func_name: 'GetTowerLayer',
+          data: {
+            layer: { layer: layerIdx, has_pass: 0, box_1_id: 1, box_2_id: 1, box_3_id: 1 }
+          },
+          error: 0
+        });
+      } else if (cmd === 'NoEndTowerInfo') {
+        sendWsPacket(ws, {
+          func_name: 'NoEndTowerInfo',
+          data: { cur_layer: 1, max_layer: 100 },
+          error: 0
+        });
+      } else if (cmd === 'NoEndTowerRank') {
+        sendWsPacket(ws, {
+          func_name: 'NoEndTowerRank',
+          data: { ranks: [] },
+          error: 0
+        });
+      } else if (cmd === 'CheckTowerTime') {
+        sendWsPacket(ws, {
+          func_name: 'CheckTowerTime',
+          data: { time: Math.floor(Date.now() / 1000) },
+          error: 0
+        });
+      } else if (cmd === 'OpenTowerBox' || cmd === 'OpenNoEndTowerBox') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { items: [{ type: 3, amount: 50000 }] },
+          error: 0
+        });
+      } else if (cmd === 'ResetTower' || cmd === 'ResetTowerEx') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
+          error: 0
+        });
+      } else if (cmd === 'NinjaFightInfo') {
+        // Nhẫn Giả Viễn Chinh / Expedition
+        sendWsPacket(ws, {
+          func_name: 'NinjaFightInfo',
+          data: {
+            ninjaFight: { cur_step: 1, difficult: 1, reset_count: 0 }
+          },
+          error: 0
+        });
+      } else if (cmd === 'OpenNinjaFightBox') {
+        sendWsPacket(ws, {
+          func_name: 'OpenNinjaFightBox',
+          data: {
+            items: [{ type: 3, amount: 50000 }, { type: 1, item_id: 40010, amount: 10 }]
+          },
+          error: 0
+        });
+      } else if (cmd === 'ResetNinjaFight' || cmd === 'SetNinjaFightDifficult') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
+          error: 0
+        });
+      } else if (cmd === 'GetNinjaPassData') {
+        sendWsPacket(ws, {
+          func_name: 'GetNinjaPassData',
+          data: { pass: [] },
+          error: 0
+        });
+      } else if (cmd === 'PlayerTreasure') {
+        // Mỏ Khoáng Sản Mineral
+        sendWsPacket(ws, {
+          func_name: 'PlayerTreasure',
+          data: { treasures: [] },
+          error: 0
+        });
+      } else if (cmd === 'SearchTreasure') {
+        sendWsPacket(ws, {
+          func_name: 'SearchTreasure',
+          data: { treasures: [] },
+          error: 0
+        });
+      } else if (cmd === 'TreasureInfo') {
+        sendWsPacket(ws, {
+          func_name: 'TreasureInfo',
+          data: { treasure: null },
+          error: 0
+        });
+      } else if (cmd === 'DugTreasure' || cmd === 'ResetTreasureLinneup' || cmd === 'HeroRecall') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
+          error: 0
+        });
+      } else if (cmd === 'PlayerSchoolInfo') {
+        // Học Viện Nhẫn Giả
+        sendWsPacket(ws, {
+          func_name: 'PlayerSchoolInfo',
+          data: {
+            playerSchool: {
+              school_1: { id: 1, lv: 1, exp: 0, status: 0 },
+              school_2: { id: 2, lv: 1, exp: 0, status: 0 },
+              school_3: { id: 3, lv: 1, exp: 0, status: 0 },
+              school_4: { id: 4, lv: 1, exp: 0, status: 0 },
+              school_5: { id: 5, lv: 1, exp: 0, status: 0 }
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'CompleteSchoolWithoutFight' || cmd === 'SchoolSweep') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1, items: [] },
+          error: 0
+        });
+      } else if (cmd === 'PlayerGroupInfo') {
+        // Bang Hội Union
+        sendWsPacket(ws, {
+          func_name: 'PlayerGroupInfo',
+          data: {
+            group: null,
+            playerGroup: null
+          },
+          error: 0
+        });
+      } else if (cmd === 'SearchGroup') {
+        sendWsPacket(ws, {
+          func_name: 'SearchGroup',
+          data: { groups: [] },
+          error: 0
+        });
+      } else if (cmd === 'GroupMembers') {
+        sendWsPacket(ws, {
+          func_name: 'GroupMembers',
+          data: { members: [] },
+          error: 0
+        });
+      } else if (cmd === 'GroupFightStatus') {
+        sendWsPacket(ws, {
+          func_name: 'GroupFightStatus',
+          data: { status: 0 },
+          error: 0
+        });
+      } else if (cmd === 'GroupFightInfo') {
+        sendWsPacket(ws, {
+          func_name: 'GroupFightInfo',
+          data: { fight: null },
+          error: 0
+        });
+      } else if (cmd === 'GroupRank') {
+        sendWsPacket(ws, {
+          func_name: 'GroupRank',
+          data: { ranks: [] },
+          error: 0
+        });
+      } else if (cmd === 'Worship' || cmd === 'ReceiveWorship' || cmd === 'GetWorShipGold') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { gold: 100000, value: 100000 },
+          error: 0
+        });
+      } else if (cmd === 'CreateGroup' || cmd === 'ApplyGroup' || cmd === 'CancelApplyGroup' || cmd === 'SetGroupRole' || cmd === 'ExitGroup' || cmd === 'GroupSetting') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
           error: 0
         });
       } else if (cmd === 'GetLvRewardInfo') {
         sendWsPacket(ws, {
           func_name: 'GetLvRewardInfo',
+          data: { list: [] },
+          error: 0
+        });
+      } else if (cmd === 'GetLvReward') {
+        sendWsPacket(ws, {
+          func_name: 'GetLvReward',
+          data: { success: 1, items: [] },
+          error: 0
+        });
+      } else if (cmd === 'GetAllEvents') {
+        sendWsPacket(ws, {
+          func_name: 'GetAllEvents',
+          data: { events: [] },
+          error: 0
+        });
+      } else if (cmd === 'GetAllEventsProcess') {
+        sendWsPacket(ws, {
+          func_name: 'GetAllEventsProcess',
           data: {
-            list: []
+            events: [],
+            process: [],
+            process_list: []
           },
           error: 0
         });
-      } else if (cmd === 'GetAllEvents' || cmd === 'GetAllEventsProcess') {
+      } else if (cmd === 'GetEventProcess') {
+        sendWsPacket(ws, {
+          func_name: 'GetEventProcess',
+          data: { process: [] },
+          error: 0
+        });
+      } else if (cmd === 'ReceivedEventAward') {
+        sendWsPacket(ws, {
+          func_name: 'ReceivedEventAward',
+          data: { items: [] },
+          error: 0
+        });
+      } else if (cmd === 'LuckyInfo') {
+        sendWsPacket(ws, {
+          func_name: 'LuckyInfo',
+          data: {
+            luckys: {},
+            items: {}
+          },
+          error: 0
+        });
+      } else if (cmd === 'PlayerLuckyInfo') {
+        sendWsPacket(ws, {
+          func_name: 'PlayerLuckyInfo',
+          data: {
+            free_count: 1,
+            last_time: 0
+          },
+          error: 0
+        });
+      } else if (cmd === 'Lucky') {
+        sendWsPacket(ws, {
+          func_name: 'Lucky',
+          data: {
+            item: { type: 3, amount: 50000 }
+          },
+          error: 0
+        });
+      } else if (cmd === 'ChatMessage') {
+        sendWsPacket(ws, {
+          func_name: 'ChatMessage',
+          data: { chats: [] },
+          error: 0
+        });
+      } else if (cmd === 'LanternInfo') {
+        sendWsPacket(ws, {
+          func_name: 'LanternInfo',
+          data: { lanterns: [] },
+          error: 0
+        });
+      } else if (cmd === 'Chat') {
+        const msgContent = params[0] || 'Chào mừng đến với Ninja Rebirth Server!';
+        sendWsPacket(ws, {
+          func_name: 'Chat',
+          data: {
+            chat: {
+              user_id: parseInt(user.uid),
+              user_name: pd.team_name || user.username,
+              team_name: pd.team_name || user.username,
+              vip_lv: pd.vip || 15,
+              content: msgContent,
+              create_time: Math.floor(Date.now() / 1000),
+              channel: 1
+            }
+          },
+          error: 0
+        });
+      } else if (cmd === 'DailyTaskAward' || cmd === 'ReceiveAchievement') {
         sendWsPacket(ws, {
           func_name: cmd,
           data: {
-            events: [],
-            process: []
+            items: [{ type: 3, amount: 50000 }, { type: 4, amount: 200 }]
           },
+          error: 0
+        });
+      } else if (cmd === 'TaskInfo' || cmd === 'RefreshTask') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { tasks: [] },
+          error: 0
+        });
+      } else if (cmd === 'TaskSweep') {
+        sendWsPacket(ws, {
+          func_name: 'TaskSweep',
+          data: { success: 1, items: [] },
+          error: 0
+        });
+      } else if (cmd === 'ReceiveVipGiftBag') {
+        sendWsPacket(ws, {
+          func_name: 'ReceiveVipGiftBag',
+          data: {
+            items: [{ type: 3, amount: 500000 }, { type: 4, amount: 2000 }]
+          },
+          error: 0
+        });
+      } else if (cmd === 'ReceiveFirstRecharge') {
+        sendWsPacket(ws, {
+          func_name: 'ReceiveFirstRecharge',
+          data: {
+            items: [{ type: 1, item_id: 10200, amount: 80 }]
+          },
+          error: 0
+        });
+      } else if (cmd === 'UpgradeSkill' || cmd === 'UpgradeQuality') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1, heros: pd.heros || {} },
+          error: 0
+        });
+      } else if (cmd === 'UpgradeGem' || cmd === 'UpgradeBaMen') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { success: 1 },
+          error: 0
+        });
+      } else if (cmd === 'GenerateAwakeTask' || cmd === 'GetHeroAwakeTasks' || cmd === 'GetHeroAwakeTask') {
+        sendWsPacket(ws, {
+          func_name: cmd,
+          data: { tasks: [] },
           error: 0
         });
       } else if (cmd === 'MessageInfo') {
         sendWsPacket(ws, {
           func_name: 'MessageInfo',
-          data: {
-            messages: []
-          },
+          data: { messages: [] },
           error: 0
         });
-      } else if (cmd === 'DailyGet') {
+      } else if (cmd === 'GetGroupHires' || cmd === 'GetPlayerHires') {
         sendWsPacket(ws, {
-          func_name: 'DailyGet',
-          data: {
-            status: 1
-          },
-          error: 0
-        });
-      } else if (cmd === 'GetGroupHires') {
-        sendWsPacket(ws, {
-          func_name: 'GetGroupHires',
-          data: {
-            hires: []
-          },
+          func_name: cmd,
+          data: { hires: [] },
           error: 0
         });
       } else if (cmd.startsWith('Before') && cmd.includes('Fight')) {
-        console.log(`>>> [WebSocket] Cho phép bắt đầu trận đánh (${cmd})`);
+        console.log(`>>> [WebSocket] Bắt đầu trận đánh (${cmd})`);
         sendWsPacket(ws, {
           func_name: cmd,
           data: {
@@ -1072,7 +1561,6 @@ wss.on('connection', (ws, req) => {
         });
       } else if (cmd.startsWith('After') && cmd.includes('Fight')) {
         console.log(`>>> [WebSocket] Kết thúc trận đánh (${cmd}) -> Thắng 3 Sao!`);
-        // Reward EXP & Gold
         const db = getDb();
         const freshUser = db.users.find(u => String(u.uid) === String(user.uid));
         if (freshUser) {
@@ -1106,7 +1594,6 @@ wss.on('connection', (ws, req) => {
           error: 0
         });
       } else if (cmd === 'BuyBox') {
-        // Tavern Gacha draw
         console.log(`>>> [WebSocket] Người chơi ${user.username} mở rương chiêu mộ (BuyBox)`);
         const catalogs = getCatalogs();
         const heroPool = catalogs.heroes && catalogs.heroes.length > 0 ? catalogs.heroes : [
@@ -1115,7 +1602,6 @@ wss.on('connection', (ws, req) => {
         const randomHero = heroPool[Math.floor(Math.random() * heroPool.length)];
         const shardId = randomHero.id;
 
-        // Add to user inventory
         const db = getDb();
         const freshUser = db.users.find(u => String(u.uid) === String(user.uid));
         if (freshUser) {
@@ -1137,11 +1623,8 @@ wss.on('connection', (ws, req) => {
           error: 0
         });
       } else if (cmd === 'UseGiftBagCode') {
-        // ==========================================
-        // GIFTCODE REDEEM HANDLER
-        // ==========================================
-        const rawCode = (pkg.params && pkg.params[0] ? pkg.params[0] : '').trim().toUpperCase();
-        console.log(`>>> [Giftcode] Người chơi ${user.username} (UID: ${user.uid}) yêu cầu đổi code: "${rawCode}"`);
+        const rawCode = (params[0] ? params[0] : '').trim().toUpperCase();
+        console.log(`>>> [Giftcode] Người chơi ${user.username} (UID: ${user.uid}) đổi code: "${rawCode}"`);
 
         const db = getDb();
         const giftcode = (db.giftcodes || []).find(g => g.code.toUpperCase() === rawCode);
@@ -1195,7 +1678,6 @@ wss.on('connection', (ws, req) => {
           return;
         }
 
-        // Apply Rewards
         const rw = giftcode.rewards || {};
         const rewardItems = [];
 
@@ -1230,7 +1712,6 @@ wss.on('connection', (ws, req) => {
           });
         }
 
-        // Save status
         currentUser.player_data.used_codes.push(giftcode.code);
         giftcode.usedCount = (giftcode.usedCount || 0) + 1;
         giftcode.usedUsers = giftcode.usedUsers || [];
@@ -1238,9 +1719,8 @@ wss.on('connection', (ws, req) => {
         saveDb(db);
         activeSockets.set(ws, currentUser);
 
-        console.log(`>>> [Giftcode] Đổi thành công code ${giftcode.code} cho ${currentUser.username}! Phần thưởng:`, rewardItems);
+        console.log(`>>> [Giftcode] Đổi thành công code ${giftcode.code} cho ${currentUser.username}!`);
 
-        // Send ExchangeRewardView payload
         sendWsPacket(ws, {
           func_name: 'UseGiftBagCode',
           data: {
@@ -1249,17 +1729,24 @@ wss.on('connection', (ws, req) => {
           error: 0
         });
 
-        // Push live PlayerInfo and BagInfo so the top bar and inventory immediately update!
         setTimeout(() => {
           pushPlayerInfo(ws, currentUser);
           pushBagInfo(ws, currentUser);
         }, 200);
       } else {
-        // Fallback for any other game command
-        console.log(`>>> [WebSocket] Gói tin khác: ${cmd}`);
+        // Universal robust fallback for any other command
+        console.log(`>>> [WebSocket] Gói tin fallback: ${cmd}`);
         sendWsPacket(ws, {
           func_name: cmd,
-          data: {},
+          data: {
+            success: 1,
+            value: 1,
+            key: params[0] || '',
+            list: [],
+            items: [],
+            process_list: [],
+            dailyCount: {}
+          },
           error: 0
         });
       }
